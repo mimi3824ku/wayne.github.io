@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wayneblog.cn/"/>
-  <updated>2016-12-02T11:35:57.733Z</updated>
+  <updated>2016-12-02T13:47:32.923Z</updated>
   <id>http://wayneblog.cn/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://wayneblog.cn/2016/12/02/server-mock/"/>
     <id>http://wayneblog.cn/2016/12/02/server-mock/</id>
     <published>2016-12-02T08:35:09.000Z</published>
-    <updated>2016-12-02T11:35:57.733Z</updated>
+    <updated>2016-12-02T13:47:32.923Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、nodejs服务器"><a href="#一、nodejs服务器" class="headerlink" title="一、nodejs服务器"></a>一、nodejs服务器</h2><ol>
 <li>为什么要有mock？<br>因为前端在发请求给后端的时候是依赖于后端的响应的，没有得到响应无法进行下一步，所以我们要想方设法自己模拟返回的数据，这个过程就叫做mock；</li>
-<li>我们的本地IP是127.0.0.1:8888</li>
+<li>我们的本地IP是127.0.0.1</li>
 <li>server服务器必须监听本地端口，server.listen(‘8888’)</li>
 <li><p>要想创建http服务器，须先引用server模块，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div></pre></td></tr></table></figure>
