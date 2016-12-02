@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>wayne&#39;s blog</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://wayneblog.cn/"/>
+  <updated>2016-12-02T11:35:57.733Z</updated>
+  <id>http://wayneblog.cn/</id>
+  
+  <author>
+    <name>Wayne Luo</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>server mock</title>
+    <link href="http://wayneblog.cn/2016/12/02/server-mock/"/>
+    <id>http://wayneblog.cn/2016/12/02/server-mock/</id>
+    <published>2016-12-02T08:35:09.000Z</published>
+    <updated>2016-12-02T11:35:57.733Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、nodejs服务器"><a href="#一、nodejs服务器" class="headerlink" title="一、nodejs服务器"></a>一、nodejs服务器</h2><ol>
+<li>为什么要有mock？<br>因为前端在发请求给后端的时候是依赖于后端的响应的，没有得到响应无法进行下一步，所以我们要想方设法自己模拟返回的数据，这个过程就叫做mock；</li>
+<li>我们的本地IP是127.0.0.1:8888</li>
+<li>server服务器必须监听本地端口，server.listen(‘8888’)</li>
+<li><p>要想创建http服务器，须先引用server模块，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var http = require(&apos;http&apos;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>正常的网页返回的是文件而不是字符串，所以我们为了返回文件引入了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var fs = require(&apos;fs&apos;) //nodejs内置的文件系统file system</div></pre></td></tr></table></figure>
+</li>
+<li><p>用http的createServer创建一个http服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var server = http.createServer(function(request,response)&#123;</div><div class="line">    response.writeHead(200);//返回的状态码</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>fs的readFile方法可以读文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">fs.readFile(&apos;index.html&apos;,function(error,content)&#123;</div><div class="line">        //因为是回调函数所以必须在readFile后才会触发</div><div class="line">        //正因如此我们必须把返回的结果也放进来，要是放在函数外面的话，可能还没读完文件就赋值了会undefined</div><div class="line">        var fileContent = content.toString();//默认的content是二进制的格式</div><div class="line">        response.end(fileContent);//这是响应的内容</div><div class="line"></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>nodejs的核心就是理解请求和响应</p>
+</li>
+<li>默认响应给浏览器的有response.end()还有favicon，我们需要将favicon变成404，即用url来区分</li>
+<li>request.method可以知道是用GET请求还是POST请求</li>
+<li>整个过程就是，浏览器发送请求给服务器，服务器必须监听了跟浏览器同样的端口才能接收请求并作出响应；服务器会跟句request的需求返回对应的响应，一个请求对应一个响应，不能对应多个响应；</li>
+<li>request包括url， response包括状态码+字符串</li>
+</ol>
+<p><img src="/images/server-mock/server_mock1.jpeg" alt=""><br><img src="/images/server-mock/server_mock2.jpeg" alt=""><br><img src="/images/server-mock/server_mock3.jpeg" alt=""><br><img src="/images/server-mock/server_mock4.jpeg" alt=""><br><img src="/images/server-mock/server_mock5.jpeg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      自己总结的mock数据的方法
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
+      <category term="server" scheme="http://wayneblog.cn/tags/server/"/>
+    
+      <category term="mock" scheme="http://wayneblog.cn/tags/mock/"/>
+    
+      <category term="ajax" scheme="http://wayneblog.cn/tags/ajax/"/>
+    
+  </entry>
+  
+</feed>
