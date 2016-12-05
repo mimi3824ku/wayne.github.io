@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://wayneblog.cn/images/git/5.png">
 <meta property="og:image" content="http://wayneblog.cn/images/git/6.png">
 <meta property="og:image" content="http://wayneblog.cn/images/git/7.png">
-<meta property="og:updated_time" content="2016-12-05T04:06:34.189Z">
+<meta property="og:updated_time" content="2016-12-05T04:08:15.213Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git">
 <meta name="twitter:description" content="自己总结的常用的git命令实际应用">
@@ -549,8 +549,7 @@
       
 
       
-        <p>###一、常用命令</p>
-<ul>
+        <h3 id="一、常用命令"><a href="#一、常用命令" class="headerlink" title="一、常用命令"></a>一、常用命令</h3><ul>
 <li><p>常用git bash命令操作：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">$ git add </div><div class="line">$ git commit -m &quot;&quot;</div><div class="line">$ git status -sb//简略的描述当前的提交状态,显示分支信息和文件修改信息</div><div class="line">$ git diff xxx//告诉你修改前和修改后，标注修改的地方</div><div class="line">$ git log//查看历史提交</div><div class="line">$ git log --pretty=oneline//简略的查看历史提交</div><div class="line">$ git log --graph --pretty=online --abbrev-commit //可以看到</div><div class="line">$ git reset commitID//版本回退</div><div class="line">$ git reset --hard commitID//这里的commitID通过git reflog查看</div><div class="line">$ git reflog//查看命令历史</div><div class="line">$ git checkout -- xxx//撤销修改；注意中间的两条横杠一定要加，不加就是切换目录</div><div class="line">$ git rm xxx//在版本库删除文件</div><div class="line">$ git remote add origin SSH //可以将本地仓库关联远程仓库，只需要将SSH协议地址复制到那里</div><div class="line">$ git clone SSH //直接从远程版本库克隆到本地</div><div class="line">$ git branch //查看本地分支</div><div class="line">$ git branch -a //查看本地和远程的分支</div><div class="line">$ git pull //将远程版本库更新到本地版本库</div><div class="line">$ git checkout //切换分支</div><div class="line">$ git branch xx //创建分支xx</div><div class="line">$ git checkout -b xx //创建分支xx并切换到该分支</div><div class="line">$ git branch -d xx//本地删除xx分支，不会删除远程的分支</div><div class="line">$ git branch -D xx//强制删除xx分支，不管有没有合并</div><div class="line">$ git push origin :xx //删除远程xx分支</div><div class="line">$ git stash //暂时保存工作现场</div><div class="line">$ git stash list //将当前的git栈信息打印，所有工作现场都会有对应的版本号</div><div class="line">$ git stash apply stash@&#123;num&#125; //恢复到指定版本号</div><div class="line">$ git stash clear //将git栈清空</div><div class="line">$ git stash pop //恢复并清空</div></pre></td></tr></table></figure>
 </li>
@@ -815,7 +814,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#二、实际应用"><span class="nav-text">二、实际应用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、常用命令"><span class="nav-text">一、常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、实际应用"><span class="nav-text">二、实际应用</span></a></li></ol></div>
             
 
           </div>
