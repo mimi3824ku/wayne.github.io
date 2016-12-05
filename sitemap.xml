@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wayneblog.cn/2016/07/02/git/</loc>
+    
+    <lastmod>2016-12-05T04:04:34.712Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wayneblog.cn/2016/12/02/server-mock/</loc>
     
     <lastmod>2016-12-02T13:47:32.923Z</lastmod>
