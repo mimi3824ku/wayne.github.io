@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://wayneblog.cn/2016/10/08/Error/</loc>
+    
+    <lastmod>2016-12-13T08:40:39.764Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://wayneblog.cn/2016/10/02/this/</loc>
     
     <lastmod>2016-12-13T08:28:15.442Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://wayneblog.cn/2016/10/05/javascript/</loc>
     
     <lastmod>2016-12-13T05:30:58.713Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wayneblog.cn/2016/10/08/Error/</loc>
-    
-    <lastmod>2016-12-13T04:51:26.506Z</lastmod>
     
   </url>
   
