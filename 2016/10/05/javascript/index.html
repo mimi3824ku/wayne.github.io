@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript,属性标签,闭包，递归，OOP，标准库," />
+  <meta name="keywords" content="javascript,属性标签,闭包,递归,OOP,标准库," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="javascript的主要知识点回顾">
+<meta name="description" content="javascript的一些主心骨知识还有自己学习过程中漏掉的知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript重要知识">
+<meta property="og:title" content="javascript重要知识及知识补充">
 <meta property="og:url" content="http://wayneblog.cn/2016/10/05/javascript/index.html">
 <meta property="og:site_name" content="wayne's blog">
-<meta property="og:description" content="javascript的主要知识点回顾">
-<meta property="og:updated_time" content="2016-12-13T04:01:35.705Z">
+<meta property="og:description" content="javascript的一些主心骨知识还有自己学习过程中漏掉的知识">
+<meta property="og:updated_time" content="2016-12-13T05:30:58.713Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript重要知识">
-<meta name="twitter:description" content="javascript的主要知识点回顾">
+<meta name="twitter:title" content="javascript重要知识及知识补充">
+<meta name="twitter:description" content="javascript的一些主心骨知识还有自己学习过程中漏掉的知识">
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <title> javascript重要知识 | wayne's blog </title>
+  <title> javascript重要知识及知识补充 | wayne's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -453,7 +453,7 @@
             
             
               
-                javascript重要知识
+                javascript重要知识及知识补充
               
             
           </h1>
@@ -511,7 +511,7 @@
 
           
           
-             <span id="/2016/10/05/javascript/" class="leancloud_visitors" data-flag-title="javascript重要知识">
+             <span id="/2016/10/05/javascript/" class="leancloud_visitors" data-flag-title="javascript重要知识及知识补充">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -525,7 +525,7 @@
 
           
               <div class="post-description">
-                  javascript的主要知识点回顾
+                  javascript的一些主心骨知识还有自己学习过程中漏掉的知识
               </div>
           
 
@@ -540,9 +540,7 @@
       
 
       
-        <p>##一、 数据类型、运算符、语句、变量</p>
-<p>###1.数据类型</p>
-<ul>
+        <h2 id="一、-数据类型、运算符、语句、变量"><a href="#一、-数据类型、运算符、语句、变量" class="headerlink" title="一、 数据类型、运算符、语句、变量"></a>一、 数据类型、运算符、语句、变量</h2><h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><ul>
 <li>类型：<ul>
 <li>基本类型</li>
 <li>复杂类型</li>
@@ -561,8 +559,7 @@
 </ul>
 </li>
 </ul>
-<p>###2.运算符</p>
-<ul>
+<h3 id="2-运算符"><a href="#2-运算符" class="headerlink" title="2.运算符"></a>2.运算符</h3><ul>
 <li>‘==’ 用相等运算符会先将数据类型做转换再比较<ul>
 <li>true ==&gt; 1</li>
 <li>false ==&gt; 0</li>
@@ -576,8 +573,7 @@
 <li><p>delete,可以delete在全局和函数中没有用var声明的变量；可以delete对象的属性(完全delete而不是变为undefined)；可以delete数组中的数,变为undefined；</p>
 </li>
 </ul>
-<p>###3.语句</p>
-<ul>
+<h3 id="3-语句"><a href="#3-语句" class="headerlink" title="3.语句"></a>3.语句</h3><ul>
 <li>for..in..语句<ul>
 <li>顺序不确定</li>
 <li>受原型链影响</li>
@@ -591,14 +587,11 @@
 </ul>
 </li>
 </ul>
-<p>###4.变量</p>
-<ul>
+<h3 id="4-变量"><a href="#4-变量" class="headerlink" title="4.变量"></a>4.变量</h3><ul>
 <li>基本类型：在内存中占有一定的实际空间，当赋值后会在内存中创建一个新的副本，保存在栈内存中；</li>
 <li>引用类型：在内存中保存的是一个指针，指向堆内存中的对象，赋值的时候也是创建一个新的指针指向对象，多个指针可同时指向一个对象；</li>
 </ul>
-<p>##二、属性标签</p>
-<p>###1.六种属性标签</p>
-<ul>
+<h2 id="二、属性标签、对象标签"><a href="#二、属性标签、对象标签" class="headerlink" title="二、属性标签、对象标签"></a>二、属性标签、对象标签</h2><h3 id="1-六种属性标签"><a href="#1-六种属性标签" class="headerlink" title="1.六种属性标签"></a>1.六种属性标签</h3><ul>
 <li>value: 存放属性的属性值</li>
 <li>writable: 表示value是否可改变，默认true</li>
 <li>enumerable: 表示属性是否可枚举，默认true;如果为false，则for..in..和object.keys()会跳过</li>
@@ -606,16 +599,15 @@
 <li>get: 存放一个函数，表示该属性的取值函数（getter），默认为undefined。</li>
 <li>set: set存放一个函数，表示该属性的存值函数（setter），默认为undefined。</li>
 </ul>
-<p>###2.属性标签关联方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//用来读取对象属性的标签</div><div class="line">Object.getOwnPropertyDescriptor(obj,&apos;property&apos;)&#123;&#125;</div><div class="line"></div><div class="line">//可定义或修改一个属性，然后返回修改后的对象</div><div class="line">//用Object.defineProperty定义的属性，writable、enumerable、configurable的默认值是false；</div><div class="line">Object.defineProperty(object,&apos;property&apos;,&#123;</div><div class="line">	value:</div><div class="line">	writable:</div><div class="line">	enumerable:</div><div class="line">	configurable:</div><div class="line">&#125;)</div><div class="line"></div><div class="line">//一次性定义或修改多个属性</div><div class="line">Object.defineProperties(obj,&#123;prop1:&#123;&#125;,prop2:&#123;&#125;,prop3:&#123;&#125;...&#125;)</div><div class="line"></div><div class="line">//可获取对象上所有的key除了enumerable:false</div><div class="line">Object.keys(obj);</div><div class="line"></div><div class="line">//获取对象自身的所有属性，不管是否可枚举</div><div class="line">Object.getOwnPropertyNames()</div></pre></td></tr></table></figure></p>
-<p>###3.元属性详解</p>
-<ul>
-<li><p>enumerable</p>
+<h3 id="2-属性标签关联方法"><a href="#2-属性标签关联方法" class="headerlink" title="2.属性标签关联方法"></a>2.属性标签关联方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//用来读取对象属性的标签</div><div class="line">Object.getOwnPropertyDescriptor(obj,&apos;property&apos;)&#123;&#125;</div><div class="line"></div><div class="line">//可定义或修改一个属性，然后返回修改后的对象</div><div class="line">//用Object.defineProperty定义的属性，writable、enumerable、configurable的默认值是false；</div><div class="line">Object.defineProperty(object,&apos;property&apos;,&#123;</div><div class="line">	value:</div><div class="line">	writable:</div><div class="line">	enumerable:</div><div class="line">	configurable:</div><div class="line">&#125;)</div><div class="line"></div><div class="line">//一次性定义或修改多个属性</div><div class="line">Object.defineProperties(obj,&#123;prop1:&#123;&#125;,prop2:&#123;&#125;,prop3:&#123;&#125;...&#125;)</div><div class="line"></div><div class="line">//可获取对象上所有的key除了enumerable:false</div><div class="line">Object.keys(obj);</div><div class="line"></div><div class="line">//获取对象自身的所有属性，不管是否可枚举</div><div class="line">Object.getOwnPropertyNames()</div><div class="line"></div><div class="line">//判断一个属性是否可枚举</div><div class="line">Object.prototype.propertyIsEnumerable()</div></pre></td></tr></table></figure>
+<h3 id="3-元属性详解"><a href="#3-元属性详解" class="headerlink" title="3.元属性详解"></a>3.元属性详解</h3><ul>
+<li><p><strong>enumerable</strong></p>
 <ul>
 <li>设置了enumerable:false的属性不被for..in..、Object.keys()、JSON.stringify以上三种方法识别；</li>
 <li>考虑到JSON.stringify方法会排除enumerable为false的值，有时可以利用这一点，为对象添加注释信息。</li>
 </ul>
 </li>
-<li><p>configurable</p>
+<li><p><strong>configurable</strong></p>
 <ul>
 <li>当configurable为false的时候，value、writable、enumerable和configurable都不能被修改了。</li>
 <li>需要注意的是，writable只有在从false改为true会报错，从true改为false则是允许的。</li>
@@ -624,13 +616,19 @@
 <li>可配置性决定了一个变量是否可以被删除（delete）。为true时才可以被delete</li>
 </ul>
 </li>
-<li><p>writable</p>
+<li><p><strong>writable</strong></p>
 <ul>
 <li>可写性（writable）决定了属性的值（value）是否可以被改变。</li>
 </ul>
 </li>
 </ul>
-<p>###4.getter&amp;setter</p>
+<h3 id="4-getter-amp-setter（存取器）"><a href="#4-getter-amp-setter（存取器）" class="headerlink" title="4.getter&amp;setter（存取器）"></a>4.getter&amp;setter（存取器）</h3><ul>
+<li>存值函数:setter;使用set命令</li>
+<li>取值函数:getter;使用get命令</li>
+<li>存取器提供的是虚拟属性，即该属性的值不是实际存在的，而是每次读取时计算生成的。</li>
+<li>存取器往往用于，属性的值需要依赖对象内部数据的场合。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">//可直接在对象中定义</div><div class="line">var o =&#123;</div><div class="line">  $n : 5,</div><div class="line">  get next() &#123; return this.$n++ &#125;,</div><div class="line">  set next(n) &#123;</div><div class="line">    if (n &gt;= this.$n) this.$n = n;</div><div class="line">    else throw &apos;新的值必须大于当前值&apos;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">o.next // 5</div><div class="line">o.next // 6</div><div class="line"></div><div class="line">o.next = 10;</div><div class="line">o.next // 10</div><div class="line"></div><div class="line">//可在Object.defineProperty中定义</div><div class="line">var d = new Date();</div><div class="line"></div><div class="line">Object.defineProperty(d, &apos;month&apos;, &#123;</div><div class="line">  get: function () &#123;</div><div class="line">    return d.getMonth();</div><div class="line">  &#125;,</div><div class="line">  set: function (v) &#123;</div><div class="line">    d.setMonth(v);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//存取器也可以使用Object.create方法定义</div><div class="line">var o = Object.create(Object.prototype, &#123;</div><div class="line">  foo: &#123;</div><div class="line">    get: function () &#123;</div><div class="line">      return &apos;getter&apos;;</div><div class="line">    &#125;,</div><div class="line">    set: function (value) &#123;</div><div class="line">      console.log(&apos;setter: &apos;+value);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -679,7 +677,13 @@
           
             <a href="/tags/属性标签/" rel="tag"># 属性标签</a>
           
-            <a href="/tags/闭包，递归，OOP，标准库/" rel="tag"># 闭包，递归，OOP，标准库</a>
+            <a href="/tags/闭包/" rel="tag"># 闭包</a>
+          
+            <a href="/tags/递归/" rel="tag"># 递归</a>
+          
+            <a href="/tags/OOP/" rel="tag"># OOP</a>
+          
+            <a href="/tags/标准库/" rel="tag"># 标准库</a>
           
         </div>
       
@@ -698,8 +702,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/02/server-mock/" rel="prev" title="server mock">
-                server mock <i class="fa fa-chevron-right"></i>
+              <a href="/2016/10/08/Error/" rel="prev" title="错误处理机制">
+                错误处理机制 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -716,7 +720,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/10/05/javascript/"
-     data-title="javascript重要知识"
+     data-title="javascript重要知识及知识补充"
      data-content=""
      data-url="http://wayneblog.cn/2016/10/05/javascript/">
   <div class="ds-share-inline">
@@ -746,7 +750,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/10/05/javascript/"
-           data-title="javascript重要知识" data-url="http://wayneblog.cn/2016/10/05/javascript/">
+           data-title="javascript重要知识及知识补充" data-url="http://wayneblog.cn/2016/10/05/javascript/">
       </div>
     
   </div>
@@ -770,8 +774,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -782,7 +795,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -799,7 +812,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -869,6 +882,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-数据类型、运算符、语句、变量"><span class="nav-text">一、 数据类型、运算符、语句、变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据类型"><span class="nav-text">1.数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-运算符"><span class="nav-text">2.运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-语句"><span class="nav-text">3.语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-变量"><span class="nav-text">4.变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、属性标签、对象标签"><span class="nav-text">二、属性标签、对象标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-六种属性标签"><span class="nav-text">1.六种属性标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-属性标签关联方法"><span class="nav-text">2.属性标签关联方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-元属性详解"><span class="nav-text">3.元属性详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-getter-amp-setter（存取器）"><span class="nav-text">4.getter&setter（存取器）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

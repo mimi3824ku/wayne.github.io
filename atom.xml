@@ -57,24 +57,72 @@
       <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
     
     
+      <category term="ajax" scheme="http://wayneblog.cn/tags/ajax/"/>
+    
       <category term="server" scheme="http://wayneblog.cn/tags/server/"/>
     
       <category term="mock" scheme="http://wayneblog.cn/tags/mock/"/>
     
+  </entry>
+  
+  <entry>
+    <title>Ajax&amp;Jsonp</title>
+    <link href="http://wayneblog.cn/2016/10/12/ajax&amp;jsonp/"/>
+    <id>http://wayneblog.cn/2016/10/12/ajax&amp;jsonp/</id>
+    <published>2016-10-12T02:25:20.000Z</published>
+    <updated>2016-12-13T05:44:19.912Z</updated>
+    
+    <summary type="html">
+    
+      关于ajax在JS和JQ中的总结
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
       <category term="ajax" scheme="http://wayneblog.cn/tags/ajax/"/>
+    
+      <category term="jsonp" scheme="http://wayneblog.cn/tags/jsonp/"/>
+    
+      <category term="cors" scheme="http://wayneblog.cn/tags/cors/"/>
+    
+      <category term="跨域" scheme="http://wayneblog.cn/tags/%E8%B7%A8%E5%9F%9F/"/>
+    
+      <category term="同域" scheme="http://wayneblog.cn/tags/%E5%90%8C%E5%9F%9F/"/>
+    
+      <category term="server-mock" scheme="http://wayneblog.cn/tags/server-mock/"/>
     
   </entry>
   
   <entry>
-    <title>javascript重要知识</title>
+    <title>错误处理机制</title>
+    <link href="http://wayneblog.cn/2016/10/08/Error/"/>
+    <id>http://wayneblog.cn/2016/10/08/Error/</id>
+    <published>2016-10-08T02:25:20.000Z</published>
+    <updated>2016-12-13T04:51:26.506Z</updated>
+    
+    <summary type="html">
+    
+      补充知识
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://wayneblog.cn/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>javascript重要知识及知识补充</title>
     <link href="http://wayneblog.cn/2016/10/05/javascript/"/>
     <id>http://wayneblog.cn/2016/10/05/javascript/</id>
     <published>2016-10-05T03:35:09.000Z</published>
-    <updated>2016-12-13T04:01:35.705Z</updated>
+    <updated>2016-12-13T05:30:58.713Z</updated>
     
-    <content type="html"><![CDATA[<p>##一、 数据类型、运算符、语句、变量</p>
-<p>###1.数据类型</p>
-<ul>
+    <content type="html"><![CDATA[<h2 id="一、-数据类型、运算符、语句、变量"><a href="#一、-数据类型、运算符、语句、变量" class="headerlink" title="一、 数据类型、运算符、语句、变量"></a>一、 数据类型、运算符、语句、变量</h2><h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><ul>
 <li>类型：<ul>
 <li>基本类型</li>
 <li>复杂类型</li>
@@ -93,8 +141,7 @@
 </ul>
 </li>
 </ul>
-<p>###2.运算符</p>
-<ul>
+<h3 id="2-运算符"><a href="#2-运算符" class="headerlink" title="2.运算符"></a>2.运算符</h3><ul>
 <li>‘==’ 用相等运算符会先将数据类型做转换再比较<ul>
 <li>true ==&gt; 1</li>
 <li>false ==&gt; 0</li>
@@ -108,8 +155,7 @@
 <li><p>delete,可以delete在全局和函数中没有用var声明的变量；可以delete对象的属性(完全delete而不是变为undefined)；可以delete数组中的数,变为undefined；</p>
 </li>
 </ul>
-<p>###3.语句</p>
-<ul>
+<h3 id="3-语句"><a href="#3-语句" class="headerlink" title="3.语句"></a>3.语句</h3><ul>
 <li>for..in..语句<ul>
 <li>顺序不确定</li>
 <li>受原型链影响</li>
@@ -123,14 +169,11 @@
 </ul>
 </li>
 </ul>
-<p>###4.变量</p>
-<ul>
+<h3 id="4-变量"><a href="#4-变量" class="headerlink" title="4.变量"></a>4.变量</h3><ul>
 <li>基本类型：在内存中占有一定的实际空间，当赋值后会在内存中创建一个新的副本，保存在栈内存中；</li>
 <li>引用类型：在内存中保存的是一个指针，指向堆内存中的对象，赋值的时候也是创建一个新的指针指向对象，多个指针可同时指向一个对象；</li>
 </ul>
-<p>##二、属性标签</p>
-<p>###1.六种属性标签</p>
-<ul>
+<h2 id="二、属性标签、对象标签"><a href="#二、属性标签、对象标签" class="headerlink" title="二、属性标签、对象标签"></a>二、属性标签、对象标签</h2><h3 id="1-六种属性标签"><a href="#1-六种属性标签" class="headerlink" title="1.六种属性标签"></a>1.六种属性标签</h3><ul>
 <li>value: 存放属性的属性值</li>
 <li>writable: 表示value是否可改变，默认true</li>
 <li>enumerable: 表示属性是否可枚举，默认true;如果为false，则for..in..和object.keys()会跳过</li>
@@ -138,16 +181,15 @@
 <li>get: 存放一个函数，表示该属性的取值函数（getter），默认为undefined。</li>
 <li>set: set存放一个函数，表示该属性的存值函数（setter），默认为undefined。</li>
 </ul>
-<p>###2.属性标签关联方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">//用来读取对象属性的标签</div><div class="line">Object.getOwnPropertyDescriptor(obj,&apos;property&apos;)&#123;&#125;</div><div class="line"></div><div class="line">//可定义或修改一个属性，然后返回修改后的对象</div><div class="line">//用Object.defineProperty定义的属性，writable、enumerable、configurable的默认值是false；</div><div class="line">Object.defineProperty(object,&apos;property&apos;,&#123;</div><div class="line">	value:</div><div class="line">	writable:</div><div class="line">	enumerable:</div><div class="line">	configurable:</div><div class="line">&#125;)</div><div class="line"></div><div class="line">//一次性定义或修改多个属性</div><div class="line">Object.defineProperties(obj,&#123;prop1:&#123;&#125;,prop2:&#123;&#125;,prop3:&#123;&#125;...&#125;)</div><div class="line"></div><div class="line">//可获取对象上所有的key除了enumerable:false</div><div class="line">Object.keys(obj);</div><div class="line"></div><div class="line">//获取对象自身的所有属性，不管是否可枚举</div><div class="line">Object.getOwnPropertyNames()</div></pre></td></tr></table></figure></p>
-<p>###3.元属性详解</p>
-<ul>
-<li><p>enumerable</p>
+<h3 id="2-属性标签关联方法"><a href="#2-属性标签关联方法" class="headerlink" title="2.属性标签关联方法"></a>2.属性标签关联方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">//用来读取对象属性的标签</div><div class="line">Object.getOwnPropertyDescriptor(obj,&apos;property&apos;)&#123;&#125;</div><div class="line"></div><div class="line">//可定义或修改一个属性，然后返回修改后的对象</div><div class="line">//用Object.defineProperty定义的属性，writable、enumerable、configurable的默认值是false；</div><div class="line">Object.defineProperty(object,&apos;property&apos;,&#123;</div><div class="line">	value:</div><div class="line">	writable:</div><div class="line">	enumerable:</div><div class="line">	configurable:</div><div class="line">&#125;)</div><div class="line"></div><div class="line">//一次性定义或修改多个属性</div><div class="line">Object.defineProperties(obj,&#123;prop1:&#123;&#125;,prop2:&#123;&#125;,prop3:&#123;&#125;...&#125;)</div><div class="line"></div><div class="line">//可获取对象上所有的key除了enumerable:false</div><div class="line">Object.keys(obj);</div><div class="line"></div><div class="line">//获取对象自身的所有属性，不管是否可枚举</div><div class="line">Object.getOwnPropertyNames()</div><div class="line"></div><div class="line">//判断一个属性是否可枚举</div><div class="line">Object.prototype.propertyIsEnumerable()</div></pre></td></tr></table></figure>
+<h3 id="3-元属性详解"><a href="#3-元属性详解" class="headerlink" title="3.元属性详解"></a>3.元属性详解</h3><ul>
+<li><p><strong>enumerable</strong></p>
 <ul>
 <li>设置了enumerable:false的属性不被for..in..、Object.keys()、JSON.stringify以上三种方法识别；</li>
 <li>考虑到JSON.stringify方法会排除enumerable为false的值，有时可以利用这一点，为对象添加注释信息。</li>
 </ul>
 </li>
-<li><p>configurable</p>
+<li><p><strong>configurable</strong></p>
 <ul>
 <li>当configurable为false的时候，value、writable、enumerable和configurable都不能被修改了。</li>
 <li>需要注意的是，writable只有在从false改为true会报错，从true改为false则是允许的。</li>
@@ -156,18 +198,24 @@
 <li>可配置性决定了一个变量是否可以被删除（delete）。为true时才可以被delete</li>
 </ul>
 </li>
-<li><p>writable</p>
+<li><p><strong>writable</strong></p>
 <ul>
 <li>可写性（writable）决定了属性的值（value）是否可以被改变。</li>
 </ul>
 </li>
 </ul>
-<p>###4.getter&amp;setter</p>
+<h3 id="4-getter-amp-setter（存取器）"><a href="#4-getter-amp-setter（存取器）" class="headerlink" title="4.getter&amp;setter（存取器）"></a>4.getter&amp;setter（存取器）</h3><ul>
+<li>存值函数:setter;使用set命令</li>
+<li>取值函数:getter;使用get命令</li>
+<li>存取器提供的是虚拟属性，即该属性的值不是实际存在的，而是每次读取时计算生成的。</li>
+<li>存取器往往用于，属性的值需要依赖对象内部数据的场合。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">//可直接在对象中定义</div><div class="line">var o =&#123;</div><div class="line">  $n : 5,</div><div class="line">  get next() &#123; return this.$n++ &#125;,</div><div class="line">  set next(n) &#123;</div><div class="line">    if (n &gt;= this.$n) this.$n = n;</div><div class="line">    else throw &apos;新的值必须大于当前值&apos;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">o.next // 5</div><div class="line">o.next // 6</div><div class="line"></div><div class="line">o.next = 10;</div><div class="line">o.next // 10</div><div class="line"></div><div class="line">//可在Object.defineProperty中定义</div><div class="line">var d = new Date();</div><div class="line"></div><div class="line">Object.defineProperty(d, &apos;month&apos;, &#123;</div><div class="line">  get: function () &#123;</div><div class="line">    return d.getMonth();</div><div class="line">  &#125;,</div><div class="line">  set: function (v) &#123;</div><div class="line">    d.setMonth(v);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//存取器也可以使用Object.create方法定义</div><div class="line">var o = Object.create(Object.prototype, &#123;</div><div class="line">  foo: &#123;</div><div class="line">    get: function () &#123;</div><div class="line">      return &apos;getter&apos;;</div><div class="line">    &#125;,</div><div class="line">    set: function (value) &#123;</div><div class="line">      console.log(&apos;setter: &apos;+value);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
-      javascript的主要知识点回顾
+      javascript的一些主心骨知识还有自己学习过程中漏掉的知识
     
     </summary>
     
@@ -178,7 +226,13 @@
     
       <category term="属性标签" scheme="http://wayneblog.cn/tags/%E5%B1%9E%E6%80%A7%E6%A0%87%E7%AD%BE/"/>
     
-      <category term="闭包，递归，OOP，标准库" scheme="http://wayneblog.cn/tags/%E9%97%AD%E5%8C%85%EF%BC%8C%E9%80%92%E5%BD%92%EF%BC%8COOP%EF%BC%8C%E6%A0%87%E5%87%86%E5%BA%93/"/>
+      <category term="闭包" scheme="http://wayneblog.cn/tags/%E9%97%AD%E5%8C%85/"/>
+    
+      <category term="递归" scheme="http://wayneblog.cn/tags/%E9%80%92%E5%BD%92/"/>
+    
+      <category term="OOP" scheme="http://wayneblog.cn/tags/OOP/"/>
+    
+      <category term="标准库" scheme="http://wayneblog.cn/tags/%E6%A0%87%E5%87%86%E5%BA%93/"/>
     
   </entry>
   
@@ -187,7 +241,56 @@
     <link href="http://wayneblog.cn/2016/10/02/this/"/>
     <id>http://wayneblog.cn/2016/10/02/this/</id>
     <published>2016-10-02T04:35:20.000Z</published>
-    <updated>2016-12-13T04:01:45.494Z</updated>
+    <updated>2016-12-13T08:28:15.442Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、this"><a href="#一、this" class="headerlink" title="一、this"></a>一、this</h2><p>this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function test()&#123;</div><div class="line">    this.x = 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。<br>下面分四种情况，详细讨论this的用法。</p>
+<h3 id="情况一：纯粹的函数调用"><a href="#情况一：纯粹的函数调用" class="headerlink" title="情况一：纯粹的函数调用"></a>情况一：<strong>纯粹的函数调用</strong></h3><p>这是函数的最通常用法，属于全局性调用，因此this就代表全局对象Global。<br>请看下面这段代码，它的运行结果是1。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　　function test()&#123;</div><div class="line">　　　　this.x = 1;</div><div class="line">　　　　alert(this.x);</div><div class="line">　　&#125;</div><div class="line">　　test(); // 1</div></pre></td></tr></table></figure></p>
+<p>为了证明this就是全局对象，我对代码做一些改变：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　　var x = 1;</div><div class="line">　　function test()&#123;</div><div class="line">　　　　alert(this.x);</div><div class="line">　　&#125;</div><div class="line">　　test(); // 1</div></pre></td></tr></table></figure></p>
+<p>运行结果还是1。再变一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">　　var x = 1;</div><div class="line">　　function test()&#123;</div><div class="line">　　　　this.x = 0;</div><div class="line">　　&#125;</div><div class="line">　　test();</div><div class="line">　　alert(x); //0</div><div class="line">window.x === this.x //true</div></pre></td></tr></table></figure></p>
+<h3 id="情况二：作为对象方法的调用"><a href="#情况二：作为对象方法的调用" class="headerlink" title="情况二：作为对象方法的调用"></a>情况二：<strong>作为对象方法的调用</strong></h3><p>函数还可以作为某个对象的方法调用，这时this就指这个上级对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">　　function test()&#123;</div><div class="line">　　　　alert(this.x);</div><div class="line">　　&#125;</div><div class="line">　　var o = &#123;&#125;;</div><div class="line">　　o.x = 1;</div><div class="line">　　o.m = test;</div><div class="line">　　o.m(); // 1</div></pre></td></tr></table></figure></p>
+<h3 id="情况三-作为构造函数调用"><a href="#情况三-作为构造函数调用" class="headerlink" title="情况三 作为构造函数调用"></a>情况三 <strong>作为构造函数调用</strong></h3><p>所谓构造函数，就是通过这个函数生成一个实例对象（object）。这时，this就指这个实例对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">　　function test()&#123;</div><div class="line">　　　　this.x = 1;</div><div class="line">　　&#125;</div><div class="line">　　var o = new test();</div><div class="line">　　alert(o.x); // 1</div></pre></td></tr></table></figure></p>
+<p>运行结果为1。为了表明这时this不是全局对象，我对代码做一些改变：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　var x = 2;</div><div class="line">　　function test()&#123;</div><div class="line">　　　　this.x = 1;</div><div class="line">　　&#125;</div><div class="line">　　var o = new test();</div><div class="line">　　alert(x); //2</div></pre></td></tr></table></figure></p>
+<p>运行结果为2，表明全局变量x的值根本没变。</p>
+<h3 id="情况四-apply调用"><a href="#情况四-apply调用" class="headerlink" title="情况四 apply调用"></a><strong>情况四 apply调用</strong></h3><p>apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">　　var x = 0;</div><div class="line">　　function test()&#123;</div><div class="line">　　　　alert(this.x);</div><div class="line">　　&#125;</div><div class="line">　　var o=&#123;&#125;;</div><div class="line">　　o.x = 1;</div><div class="line">　　o.m = test;</div><div class="line">　　o.m.apply(); //0</div></pre></td></tr></table></figure></p>
+<p>apply()的参数为空时，默认调用全局对象。因此，这时的运行结果为0，证明this指向的是全局对象。<br>如果把最后一行代码修改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　　o.m.apply(o); //1</div></pre></td></tr></table></figure></p>
+<p>运行结果就变成了1，证明了这时this指向的是对象o。</p>
+<h2 id="二、apply、call、bind方法"><a href="#二、apply、call、bind方法" class="headerlink" title="二、apply、call、bind方法"></a>二、apply、call、bind方法</h2><h3 id="1-apply-amp-call"><a href="#1-apply-amp-call" class="headerlink" title="1.apply()&amp;call()"></a>1.apply()&amp;call()</h3><ul>
+<li>作用：<br>call和apply都是为了改变某个函数运行时的上下文(context)而存在的，也就是改变this的指向;Javascript中函数有「定义时上下文」和「运行时上下文」以及「上下文是可以改变的」这样的概念。<br>栗子：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">   function Foo(animal)&#123;</div><div class="line">       this.animal = animal;</div><div class="line">   &#125;</div><div class="line">   Foo.prototype.say = function()&#123;</div><div class="line">       console.log(this.animal);</div><div class="line">   &#125;;</div><div class="line">   var obj1 = new Foo(&apos;cat&apos;);</div><div class="line">   obj1.say();//cat</div><div class="line"></div><div class="line">   obj2 = &#123;animal:&apos;dog&apos;&#125;;</div><div class="line">   //obj2.say();//报错，因obj2没有定义say方法</div><div class="line">   obj1.say.call(obj2);//dog 调用obj1的say方法并改变this的指向</div><div class="line">obj1.say.apply(obj2);//dog</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>所以，可以看出 call 和 apply 是为了动态改变 this 而出现的，当一个 object 没有某个方法（本栗子中obj2没有say方法），但是其他的有（本栗子中obj1有say方法），我们可以借助call或apply用其它对象的方法来操作。</p>
+<ul>
+<li><p>apply&amp;call的区别<br>其实就是接受的参数不同</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">func.call(this,arg1,arg2,...);</div><div class="line">func.apply(this,[arg1,arg2,...]);</div></pre></td></tr></table></figure>
+<p>  可以看出call的参数必须<strong>按顺序</strong>传递进去，而apply则是传递一个数组;<br>  JavaScript 中，某个函数的参数数量是不固定的，因此要说适用条件的话，当你的参数是明确知道数量时用 call 。<br>  而不确定的时候用 apply，然后把参数 push 进数组传递进去。当参数数量不确定时，函数内部也可以通过 arguments 这个伪数组来遍历所有的参数。</p>
+</li>
+<li><p>apply&amp;call的常见用法</p>
+<p>   <strong>数组之间追加</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var arr1 = [33,44,55,&#123;name:&apos;wayne&apos;&#125;];</div><div class="line">var arr2 = [88,99,22];</div><div class="line">Array.prototype.push.apply(arr1,arr2);</div><div class="line">	</div><div class="line">arr1// [33, 44, 55, Object, 88, 99, 22]</div></pre></td></tr></table></figure>
+<p>   <strong>获取数组中的最大值和最小值</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//	number 本身没有 max 方法，但是 Math 有，我们就可以借助 call 或者 apply 使用其方法。</div><div class="line">var nums = [21,556,9,-200];</div><div class="line">var maxInNums = Math.max.apply(Math,nums);//556</div><div class="line">var minInNums = Math.min.apply(Math,nums);//-200</div></pre></td></tr></table></figure>
+<p>   <strong>验证是否是数组（前提是toString()方法没有被重写过）</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">functionisArray(obj)&#123; </div><div class="line">   	return Object.prototype.toString.call(obj) === &apos;[object Array]&apos; ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   <strong>类（伪）数组使用数组方法</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//Javascript中存在一种名为伪数组的对象结构。比较特别的是 arguments 对象，还有像调用 getElementsByTagName , document.childNodes 之类的，它们返回NodeList对象都属于伪数组。不能应用 Array下的 push , pop 等方法。</div><div class="line">//但是我们能通过 Array.prototype.slice.call 转换为真正的数组的带有 length 属性的对象，这样 domNodes 就可以应用 Array 下的所有方法了。</div><div class="line"></div><div class="line">var domNodes = Array.prototype.slice.call(document.getElementsByTagName(&quot;*&quot;));</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-bind-方法"><a href="#2-bind-方法" class="headerlink" title="2.bind()方法"></a>2.bind()方法</h3><blockquote>
+<p>MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//在常见的单体模式中，通常我们会使用 _this , that , self 等保存 this ，这样我们可以在改变了上下文之后继续引用到它。 而我们可以利用bind()直接传入想要的上下文this</div><div class="line"></div><div class="line">var $box = $(&apos;.box&apos;);</div><div class="line">var foo = &#123;</div><div class="line">  animal: &apos;dog&apos;,</div><div class="line">  say_animal: function()&#123;</div><div class="line">    //var _this = this;</div><div class="line">    $box.on(&apos;click&apos;,function()&#123;</div><div class="line">      console.log(this.animal);</div><div class="line">    &#125;.bind(this));</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">foo.say_animal();</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
+<li>三种方法的区别<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    x: 81,</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">var foo = &#123;</div><div class="line">    getX: function() &#123;</div><div class="line">        return this.x;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">console.log(foo.getX.bind(obj)());  //81</div><div class="line">console.log(foo.getX.call(obj));    //81</div><div class="line">console.log(foo.getX.apply(obj));   //81</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>结论：区别是，当你希望改变上下文环境之后并非立即执行，而是回调执行的时候，使用 bind() 方法。而 apply/call 则会立即执行函数。</p>
+<ul>
+<li>apply、call、bind都可以用来改变函数的this对象的指向;</li>
+<li>apply、call、bind三者第一个参数都是this要指向的对象，也就是想指定的上下文;</li>
+<li>apply、call、bind都可以利用后续参数传参;</li>
+<li>bind返回对应函数，便于稍后调用;apply、call则是立即调用;</li>
+</ul>
+]]></content>
     
     <summary type="html">
     
