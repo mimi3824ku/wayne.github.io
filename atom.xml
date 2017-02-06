@@ -247,6 +247,101 @@
   </entry>
   
   <entry>
+    <title>responsive理财网站练手项目</title>
+    <link href="http://wayneblog.cn/2016/12/29/responsive-project/"/>
+    <id>http://wayneblog.cn/2016/12/29/responsive-project/</id>
+    <published>2016-12-29T04:35:20.000Z</published>
+    <updated>2017-02-06T10:45:42.006Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、响应式布局的设计理念"><a href="#一、响应式布局的设计理念" class="headerlink" title="一、响应式布局的设计理念"></a>一、响应式布局的设计理念</h2><h3 id="1-设计实践原则"><a href="#1-设计实践原则" class="headerlink" title="1. 设计实践原则"></a>1. 设计实践原则</h3><pre><code>- 渐进增强
+- 优雅降级
+本人更加推崇优雅降级，先不考虑兼容性问题将所想都实现出来后，再去考虑需要兼容的浏览器；因为在老旧浏览器中先设置基础内容是十分耗时的，所以先将页面做出来后再去选择摒弃哪些不兼容的实现；
+</code></pre><h3 id="2-先从移动端还是PC端开始设计"><a href="#2-先从移动端还是PC端开始设计" class="headerlink" title="2. 先从移动端还是PC端开始设计"></a>2. 先从移动端还是PC端开始设计</h3><pre><code>- 主要还是跟个人习惯和网站的性质有关联；
+- PC端先实现Chrome浏览器的运行，而后在兼容FireFox和IE等浏览器，当这些浏览器完美运行后，即可去做下国内浏览器如360、搜狗之类浏览器的兼容。国内浏览器主要的内核有两种，一种是IE的一种是webkit的，所以当做好chrome和IE的兼容后基本无需作太大的改动即可；
+- 选择现在最新版本的chrome下调试是因为调试工具完整简单易用，并且浏览器使用占比高；
+</code></pre><h3 id="3-媒体查询中断点的选择"><a href="#3-媒体查询中断点的选择" class="headerlink" title="3. 媒体查询中断点的选择"></a>3. 媒体查询中断点的选择</h3><pre><code>- 这里断点的选择主要是对width的选择
+- 常用的断点是0-480小屏、481-800中屏、801-1400大屏、1400+巨屏，当然需要产品设计师一起设定
+</code></pre><h2 id="二、响应式网站的优缺点"><a href="#二、响应式网站的优缺点" class="headerlink" title="二、响应式网站的优缺点"></a>二、响应式网站的优缺点</h2><h3 id="1-优点："><a href="#1-优点：" class="headerlink" title="1. 优点："></a>1. 优点：</h3><pre><code>- 减少工作量节省时间，体现在不需要为不同的屏幕尺寸提供不同的js、css、img等
+- 每个设备都能得到正确的设计
+- 搜索优化
+</code></pre><h3 id="2-缺点："><a href="#2-缺点：" class="headerlink" title="2. 缺点："></a>2. 缺点：</h3><pre><code>- 需加载更多的样式与脚本资源
+- 对设计师要求高
+- 老版本浏览器兼容性不好
+</code></pre><h2 id="三、流动布局"><a href="#三、流动布局" class="headerlink" title="三、流动布局"></a>三、流动布局</h2><ul>
+<li>流动布局的简单公式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">公式是用目标元素的宽度除以他父元素的宽度，结果就是目标元素的相对宽度：</div><div class="line">target/context = result</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="四、弹性图片"><a href="#四、弹性图片" class="headerlink" title="四、弹性图片"></a>四、弹性图片</h2><ul>
+<li>所谓响应式图片就是能够根据设备大小加载不同的图片</li>
+<li>两种解决方法：<br>1.使用<picture>元素（HTML5新增）<br>2.使用img的srcset、sizes</picture></li>
+</ul>
+<h3 id="1-使用-lt-picture-gt-元素"><a href="#1-使用-lt-picture-gt-元素" class="headerlink" title="1.使用&lt; picture&gt;元素"></a>1.使用&lt; picture&gt;元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;picture alt=&quot;image description&quot;&gt;</div><div class="line">    &lt;source srcset=&quot;/path/large-image.png&quot; media=&quot;(min-width: 800px)&quot;&gt;</div><div class="line">    &lt;source srcset=&quot;/path/medium-image.png&quot; media=&quot;(min-width: 600px)&quot;&gt;</div><div class="line">    &lt;img src=&quot;/path/mobile-image.png&quot; alt=&quot;image description&quot;&gt;</div><div class="line">&lt;/picture&gt;</div><div class="line"></div><div class="line">其中img元素是默认情况下显示的图片源，而source是在特定的media queries条件下显示的图片；</div></pre></td></tr></table></figure>
+<ul>
+<li>兼容性问题<br>IE都不兼容除了edge<br><img src="leanote://file/getImage?fileId=586a0d9bd9f3066e1d000000" alt=""></li>
+<li>真的要使用可以用polyfill填平兼容，<a href="http://scottjehl.github.io/picturefill/" target="_blank" rel="external">Picturefill</a></li>
+</ul>
+<h3 id="2-使用img的srcset、sizes"><a href="#2-使用img的srcset、sizes" class="headerlink" title="2.使用img的srcset、sizes"></a>2.使用img的srcset、sizes</h3><ul>
+<li>&lt; img&gt;元素自身也提供了响应式的属性：srcset和sizes。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;img src=&quot;480.png&quot;</div><div class="line">         srcset=&quot;480.png 480w ,600.png 600w, 800.png 800w&quot;</div><div class="line">         sizes=&quot;(min-width: 800px) 800px,</div><div class="line">         (min-width: 600px) and (max-width: 799px) 600px,</div><div class="line">        100vw&quot;&gt;</div><div class="line">注意浏览器会对加载的图片进行缓存，会以最优图片显示</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="https://segmentfault.com/a/1190000004411869" target="_blank" rel="external">srcset和sizes</a></p>
+<h2 id="五、媒体查询-media-queries-快速入门"><a href="#五、媒体查询-media-queries-快速入门" class="headerlink" title="五、媒体查询(media queries)快速入门"></a>五、媒体查询(<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Media_queries" target="_blank" rel="external">media queries</a>)快速入门</h2><h3 id="1-Media-Query"><a href="#1-Media-Query" class="headerlink" title="1. Media Query"></a>1. Media Query</h3><p>媒体查询作为网页响应式布局的一种方式，可以针对不同媒体类型定制不同的样式规则。<br>所谓的媒体类型，包括PC、平板、手机、打印机、电视、屏幕阅读器等。<br>使用媒体查询的方法有两种：</p>
+<ul>
+<li><p>在link标签中定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=&quot;stylesheet&quot; herf = &quot;responsive.css&quot;  media=&quot;mediatype and | not | only (media feature)&quot;&gt;&lt;/link&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>直接在css文件中定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;style&gt;</div><div class="line">@media screen (min-width : 800px)&#123;</div><div class="line">      div&#123;</div><div class="line">         background:red;</div><div class="line">      &#125;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-Media-Query的常见语法"><a href="#2-Media-Query的常见语法" class="headerlink" title="2. Media Query的常见语法"></a>2. Media Query的常见语法</h3><p>媒体查询的语法包括逻辑操作符、媒体类型和媒体属性</p>
+<ul>
+<li><p>逻辑操作符<br>逻辑操作符主要有 and | not | only和逗号分隔列表</p>
+<ul>
+<li><p><code>and</code>操作符能够把多个媒体属性组合到一条媒体查询，只有每个属性为真，查询结果才为真；</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">eg: @media only screen (min-width:320px) and (max-width:800px)&#123;</div><div class="line">        css code&#123;&#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>逗号分隔列表，</code>效果等同于or逻辑操作符，只要其中一个查询条件为真，则返回真；</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@media only screen (max-width:800px), (orientation: landscape) &#123;</div><div class="line">        css code&#123;&#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>not</code>操作符应用于整个媒体查询并对结果取反；</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@media not print and (min-width:900px)&#123;</div><div class="line">    css code</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  <strong>as the same as</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@media not (print and (min-width:900px)),(max-width:1200px)&#123;</div><div class="line">    css code</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>only</code>操作符是防止老旧浏览器不支持媒体查询而应用给定样式，即对于支持媒体查询的浏览器会忽略only而直接响应后面满足条件的样式，而对于不支持媒体查询的浏览器而言会忽略后面样式；</p>
+</li>
+</ul>
+</li>
+<li><p>媒体类型<br>媒体类型属于媒体属性的子集，这里为了理解方便，所以单独划分开来。<br>常见的媒体类型（属性）包括：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">all: 所有设备</div><div class="line">screen: 计算机屏幕、平板、手机等</div><div class="line">print: 打印机</div><div class="line">speech: 屏幕阅读器</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>媒体属性<br>常用的媒体属性：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">设备宽高：device-width | device-height | max-device-width | min-device-height;</div><div class="line">宽高(渲染区域)：width | height | max-width | min-height;</div><div class="line">设备方向： (orientation)&#123;portrait | landscape&#125;</div><div class="line">分辨率：(resolution: 300dpi)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><a href="http://www.webkaka.com/tutorial/html/2015/082713/" target="_blank" rel="external">max-device-width和max-width的区别</a></p>
+<h2 id="六、项目中的一些小知识"><a href="#六、项目中的一些小知识" class="headerlink" title="六、项目中的一些小知识"></a>六、项目中的一些小知识</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">.editorconfig 配置文件，规范webstorm等IDE的书写规范</div><div class="line">.gitnore 配置文件，告诉git哪些文件不需要做版本控制</div><div class="line">robots 文件，用于搜索引擎爬虫，告诉机器忽略哪些内容</div><div class="line">README.md 的书写格式</div><div class="line"></div><div class="line">组织项目目录结构</div><div class="line">html5常用标签: header main footer nav section article aside</div><div class="line">article和section的区别和使用:对于一段主题性的内容，则就适用 section，而假如这段内容可以脱离上下文，作为完整的独立存在的一段内容，则就适用 article。</div><div class="line">class的一般采用中横线连接用于样式，而id采用驼峰用于JS</div><div class="line">页面中必不可少的就用Img，装饰的话可以用img也可以用background</div><div class="line">写完html大体结构后可以在structure中生成结构，容易在项目中查找并修改</div><div class="line">使用normalize.css而不要用reset.css</div><div class="line">关于em和rem的区别：em是相对于父元素的，rem是相对于html的，本项目中采用rem更不容易混乱；</div><div class="line">中文的font-size的下限是12px，英文的font-size下限是10px，注意使用中显示的不同</div><div class="line">关于inline-block，可以简单的用margin-left:-3px;也可以用font-size:0;不过都太过于麻烦且不兼容，最好还是使用float</div><div class="line">雪碧图的使用，减少网络请求，减少服务器压力</div><div class="line">尽量不要在css和js中写中文，在css中的中文需要转义成unicode形式；</div><div class="line">media的级别比html还高，所以使用rem将会是浏览器默认值1rem=16px，而不会因为改变了html的rem值而应用；</div><div class="line">webstorm中右击文件，split vertically可以分屏操作</div><div class="line">320px一般是移动端的最小兼容设备</div></pre></td></tr></table></figure>
+<p><a href="https://necolas.github.io/normalize.css/" target="_blank" rel="external">normalize.css</a><br><a href="http://tool.lu/fontfamily/" target="_blank" rel="external">中文转unicode在线工具</a><br><a href="http://owlgraphic.com/owlcarousel/" target="_blank" rel="external">owl-carousel插件</a><br><a href="http://www.alloyteam.com/2015/04/zi-shi-ying-she-ji-yu-xiang-ying-shi-wang-ye-she-ji-qian-tan/" target="_blank" rel="external">自适应参考文章</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      对基础进行一个总结回顾
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
+      <category term="responsive" scheme="http://wayneblog.cn/tags/responsive/"/>
+    
+      <category term="media query" scheme="http://wayneblog.cn/tags/media-query/"/>
+    
+  </entry>
+  
+  <entry>
     <title>server mock</title>
     <link href="http://wayneblog.cn/2016/12/02/server-mock/"/>
     <id>http://wayneblog.cn/2016/12/02/server-mock/</id>
