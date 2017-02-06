@@ -251,7 +251,7 @@
     <link href="http://wayneblog.cn/2016/12/29/responsive-project/"/>
     <id>http://wayneblog.cn/2016/12/29/responsive-project/</id>
     <published>2016-12-29T04:35:20.000Z</published>
-    <updated>2017-02-06T10:45:42.006Z</updated>
+    <updated>2017-02-06T10:47:08.517Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、响应式布局的设计理念"><a href="#一、响应式布局的设计理念" class="headerlink" title="一、响应式布局的设计理念"></a>一、响应式布局的设计理念</h2><h3 id="1-设计实践原则"><a href="#1-设计实践原则" class="headerlink" title="1. 设计实践原则"></a>1. 设计实践原则</h3><pre><code>- 渐进增强
 - 优雅降级
@@ -277,7 +277,7 @@
 </ul>
 <h3 id="1-使用-lt-picture-gt-元素"><a href="#1-使用-lt-picture-gt-元素" class="headerlink" title="1.使用&lt; picture&gt;元素"></a>1.使用&lt; picture&gt;元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;picture alt=&quot;image description&quot;&gt;</div><div class="line">    &lt;source srcset=&quot;/path/large-image.png&quot; media=&quot;(min-width: 800px)&quot;&gt;</div><div class="line">    &lt;source srcset=&quot;/path/medium-image.png&quot; media=&quot;(min-width: 600px)&quot;&gt;</div><div class="line">    &lt;img src=&quot;/path/mobile-image.png&quot; alt=&quot;image description&quot;&gt;</div><div class="line">&lt;/picture&gt;</div><div class="line"></div><div class="line">其中img元素是默认情况下显示的图片源，而source是在特定的media queries条件下显示的图片；</div></pre></td></tr></table></figure>
 <ul>
-<li>兼容性问题<br>IE都不兼容除了edge<br><img src="leanote://file/getImage?fileId=586a0d9bd9f3066e1d000000" alt=""></li>
+<li>兼容性问题<br>IE都不兼容除了edge<br><img src="http://p1.bpimg.com/567571/49434c6a248cdff4.png" alt=""></li>
 <li>真的要使用可以用polyfill填平兼容，<a href="http://scottjehl.github.io/picturefill/" target="_blank" rel="external">Picturefill</a></li>
 </ul>
 <h3 id="2-使用img的srcset、sizes"><a href="#2-使用img的srcset、sizes" class="headerlink" title="2.使用img的srcset、sizes"></a>2.使用img的srcset、sizes</h3><ul>
