@@ -442,7 +442,7 @@
     <link href="http://wayneblog.cn/2016/12/15/prototype/"/>
     <id>http://wayneblog.cn/2016/12/15/prototype/</id>
     <published>2016-12-15T04:35:20.000Z</published>
-    <updated>2017-02-06T11:38:11.673Z</updated>
+    <updated>2017-02-06T11:39:10.187Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-构造函数里面的变量"><a href="#1-构造函数里面的变量" class="headerlink" title="1. 构造函数里面的变量"></a>1. 构造函数里面的变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function People()&#123;</div><div class="line">    var sex = &apos;male&apos;,//函数内部的局部变量</div><div class="line">    this.name = name;//实例对象的属性</div><div class="line">    this.age = age;</div><div class="line">    People.age = 30;//函数本身的属性，因为函数本身也是对象；</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>函数执行一定要有return结果，不然就会return出undefined，不用new的话People本质上就是一个普通函数，什么都不会去执行，People和people没有区别，知识约定俗成用首字母大写区分构造函数，不用new的话People里面的this就是window;<br><img src="http://i1.piimg.com/567571/74359fbbed0e53b7.png" alt=""></p>
@@ -455,13 +455,13 @@
 <li>instanceof运算符返回一个布尔值，表示指定对象是否为某个构造函数的实例。</li>
 <li>instanceof运算符的左边是实例对象，右边是构造函数。它的运算实质是检查右边构建函数的原型对象，是否在左边对象的原型链上。因此，下面两种写法是等价的。</li>
 <li>由于instanceof对整个原型链上的对象都有效，因此同一个实例对象，可能会对多个构造函数都返回true</li>
-<li>注意，instanceof运算符只能用于对象，不适用原始类型的值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var s = &apos;hello&apos;;</div><div class="line">s instanceof String // false</div><div class="line"></div><div class="line">undefined instanceof Object // false</div><div class="line">null instanceof Object // false</div></pre></td></tr></table></figure>
-</li>
+<li>注意，instanceof运算符只能用于对象，不适用原始类型的值。</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var s = &apos;hello&apos;;</div><div class="line">s instanceof String // false</div><div class="line"></div><div class="line">undefined instanceof Object // false</div><div class="line">null instanceof Object // false</div></pre></td></tr></table></figure>
 <h3 id="3-继承的两种方法"><a href="#3-继承的两种方法" class="headerlink" title="3. 继承的两种方法"></a>3. 继承的两种方法</h3><ul>
-<li>第一种：分成两步<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">第一步是在子类的构造函数中，调用父类的构造函数。</div><div class="line">function Super(name,age)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.age = age;</div><div class="line">&#125;</div><div class="line">function Sub(value)&#123;</div><div class="line">    Super.call(this);</div><div class="line">    this.prop = value;</div><div class="line">&#125;</div><div class="line">上面代码中，Sub是子类的构造函数，this是子类的实例。在实例上调用父类的构造函数Super，就会让子类实例具有父类实例的属性。</div></pre></td></tr></table></figure>
-</li>
+<li>第一种：分成两步</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">第一步是在子类的构造函数中，调用父类的构造函数。</div><div class="line">function Super(name,age)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.age = age;</div><div class="line">&#125;</div><div class="line">function Sub(value)&#123;</div><div class="line">    Super.call(this);</div><div class="line">    this.prop = value;</div><div class="line">&#125;</div><div class="line">上面代码中，Sub是子类的构造函数，this是子类的实例。在实例上调用父类的构造函数Super，就会让子类实例具有父类实例的属性。</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">第二步，是让子类的原型指向父类的原型，这样子类就可以继承父类原型。</div><div class="line">Sub.prototype = Object.create(Super.protyte);</div><div class="line">Sub.prototype.constructor = Sub;</div><div class="line">Sub.prorotype.method= ....;</div></pre></td></tr></table></figure>
 ]]></content>
     
