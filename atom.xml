@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wayneblog.cn/"/>
-  <updated>2017-02-06T10:41:02.291Z</updated>
+  <updated>2017-02-06T11:42:03.776Z</updated>
   <id>http://wayneblog.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://wayneblog.cn/2016/12/30/Javascript-event/"/>
     <id>http://wayneblog.cn/2016/12/30/Javascript-event/</id>
     <published>2016-12-30T04:35:20.000Z</published>
-    <updated>2017-02-06T10:41:02.291Z</updated>
+    <updated>2017-02-06T11:42:03.776Z</updated>
     
     <content type="html"><![CDATA[<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>个人认为：不论是浏览器自带的事件，还是自定义事件，都是观察者模式的实现。更确切地说：事件流是会流动的，流到哪个节点，事件在哪里发生，事件发生时，节点便会调用在这个节点绑定的事件处理程序。节点是被观察者，事件处理程序是观察者，当事件流流到被观察者时，被观察者会对外宣称“我这里发生了某个事件”，即通知观察者，也就是节点调用事件处理程序。事件流是不知道被观察者有多少个的，所以即使是0个，事件流也会继续流，流到节点时，节点会遍历自己注册的事件处理程序，存在就调用。具体浏览器的实现和优化肯定更加复杂和精妙，但原理应该是这样（以上为个人理解）。</p>
 <h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><p>事件流分为事件冒泡和事件捕获：</p>
@@ -244,6 +244,14 @@
     
       <category term="事件" scheme="http://wayneblog.cn/tags/%E4%BA%8B%E4%BB%B6/"/>
     
+      <category term="事件流" scheme="http://wayneblog.cn/tags/%E4%BA%8B%E4%BB%B6%E6%B5%81/"/>
+    
+      <category term="事件冒泡" scheme="http://wayneblog.cn/tags/%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1/"/>
+    
+      <category term="事件捕获" scheme="http://wayneblog.cn/tags/%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7/"/>
+    
+      <category term="事件委托" scheme="http://wayneblog.cn/tags/%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/"/>
+    
   </entry>
   
   <entry>
@@ -346,7 +354,7 @@
     <link href="http://wayneblog.cn/2016/12/28/module/"/>
     <id>http://wayneblog.cn/2016/12/28/module/</id>
     <published>2016-12-28T03:45:20.000Z</published>
-    <updated>2017-02-06T11:19:31.828Z</updated>
+    <updated>2017-02-06T11:42:15.335Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、模块化AMD、CMD、CommonJS"><a href="#一、模块化AMD、CMD、CommonJS" class="headerlink" title="一、模块化AMD、CMD、CommonJS"></a>一、模块化AMD、CMD、CommonJS</h2><h3 id="1-模块化的简单理解："><a href="#1-模块化的简单理解：" class="headerlink" title="1. 模块化的简单理解："></a>1. 模块化的简单理解：</h3><p>模块化，简单的来说模块相当于一个功能，当需要用的时候就去调用模块，目前有两种模块规范，AMD是用于浏览器端的，CommonJS是用于服务器端的；</p>
 <h3 id="2-AMD（异步模块定义）"><a href="#2-AMD（异步模块定义）" class="headerlink" title="2. AMD（异步模块定义）"></a>2. AMD（异步模块定义）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">define(id?, dependencies?, factory);定义模块</div><div class="line">id: 模块名，一般不写</div><div class="line">dependencies: 已被模块标识的数组字面量</div><div class="line">factory: 模块初始化要执行的函数或对象，函数只被执行一次，对象为输出值</div><div class="line"></div><div class="line">require([&apos;moduleA&apos;,&apos;moduleB&apos;],function(moduleA,moduleB)&#123;</div><div class="line">    // some code here</div><div class="line">&#125;)调用模块</div><div class="line"></div><div class="line">第一个参数是数组，表示所依赖的模块；第二个参数是回调函数，所依赖的模块以参数形式传入即可在回调函数内部调用；只有当模块加载完成才会执行回调函数；</div><div class="line">require===requirejs</div></pre></td></tr></table></figure>
@@ -388,7 +396,15 @@
       <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
     
     
-      <category term="模块化、AMD、CMD、CommonJS、require.js" scheme="http://wayneblog.cn/tags/%E6%A8%A1%E5%9D%97%E5%8C%96%E3%80%81AMD%E3%80%81CMD%E3%80%81CommonJS%E3%80%81require-js/"/>
+      <category term="模块化" scheme="http://wayneblog.cn/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
+    
+      <category term="AMD" scheme="http://wayneblog.cn/tags/AMD/"/>
+    
+      <category term="CMD" scheme="http://wayneblog.cn/tags/CMD/"/>
+    
+      <category term="CommonJS" scheme="http://wayneblog.cn/tags/CommonJS/"/>
+    
+      <category term="require.js" scheme="http://wayneblog.cn/tags/require-js/"/>
     
   </entry>
   
@@ -397,7 +413,7 @@
     <link href="http://wayneblog.cn/2016/12/27/Asynchronous/"/>
     <id>http://wayneblog.cn/2016/12/27/Asynchronous/</id>
     <published>2016-12-27T03:45:20.000Z</published>
-    <updated>2017-02-06T11:24:47.867Z</updated>
+    <updated>2017-02-06T11:41:03.038Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、setTimeout"><a href="#一、setTimeout" class="headerlink" title="一、setTimeout"></a>一、setTimeout</h2><h3 id="1-setTimeout基本用法"><a href="#1-setTimeout基本用法" class="headerlink" title="1.setTimeout基本用法"></a>1.<a href="http://js.jirengu.com/rawuhugope/1/edit?html,js,output" target="_blank" rel="external">setTimeout基本用法</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var timer = setTimeout(sayName,2000,&apos;wayne&apos;);</div><div class="line"></div><div class="line">function sayName(name)&#123;</div><div class="line">  console.log(name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//setTimeout(func,delay,[pram1,pram2,...])</div></pre></td></tr></table></figure>
 <h3 id="2-setTimeout只会推迟执行，而不会提前执行"><a href="#2-setTimeout只会推迟执行，而不会提前执行" class="headerlink" title="2.setTimeout只会推迟执行，而不会提前执行"></a>2.<a href="http://js.jirengu.com/canuzolayi/1/edit?html,js,console,output" target="_blank" rel="external">setTimeout只会推迟执行，而不会提前执行</a></h3><h3 id="3-setTimeout有delay的最小值"><a href="#3-setTimeout有delay的最小值" class="headerlink" title="3.setTimeout有delay的最小值"></a>3.setTimeout有delay的最小值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var timer = setInterval(callback,0);</div><div class="line"></div><div class="line">function callback()&#123;</div><div class="line">  console.log(&apos;开始工作&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">//实际上每个浏览器的最小间隔时间都不一样，通常是4ms，不可可能到0ms，IE浏览器是15ms</div></pre></td></tr></table></figure>
@@ -433,7 +449,15 @@
       <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
     
     
-      <category term="异步、async、setTimeout、JS动画基础、callback" scheme="http://wayneblog.cn/tags/%E5%BC%82%E6%AD%A5%E3%80%81async%E3%80%81setTimeout%E3%80%81JS%E5%8A%A8%E7%94%BB%E5%9F%BA%E7%A1%80%E3%80%81callback/"/>
+      <category term="异步" scheme="http://wayneblog.cn/tags/%E5%BC%82%E6%AD%A5/"/>
+    
+      <category term="async" scheme="http://wayneblog.cn/tags/async/"/>
+    
+      <category term="setTimeout" scheme="http://wayneblog.cn/tags/setTimeout/"/>
+    
+      <category term="JS动画基础" scheme="http://wayneblog.cn/tags/JS%E5%8A%A8%E7%94%BB%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="callback" scheme="http://wayneblog.cn/tags/callback/"/>
     
   </entry>
   
@@ -442,7 +466,7 @@
     <link href="http://wayneblog.cn/2016/12/15/prototype/"/>
     <id>http://wayneblog.cn/2016/12/15/prototype/</id>
     <published>2016-12-15T04:35:20.000Z</published>
-    <updated>2017-02-06T11:39:10.187Z</updated>
+    <updated>2017-02-06T11:42:34.258Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-构造函数里面的变量"><a href="#1-构造函数里面的变量" class="headerlink" title="1. 构造函数里面的变量"></a>1. 构造函数里面的变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function People()&#123;</div><div class="line">    var sex = &apos;male&apos;,//函数内部的局部变量</div><div class="line">    this.name = name;//实例对象的属性</div><div class="line">    this.age = age;</div><div class="line">    People.age = 30;//函数本身的属性，因为函数本身也是对象；</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>函数执行一定要有return结果，不然就会return出undefined，不用new的话People本质上就是一个普通函数，什么都不会去执行，People和people没有区别，知识约定俗成用首字母大写区分构造函数，不用new的话People里面的this就是window;<br><img src="http://i1.piimg.com/567571/74359fbbed0e53b7.png" alt=""></p>
@@ -474,7 +498,17 @@
       <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
     
     
-      <category term="Object、prototype、对象、原型、原型链、继承" scheme="http://wayneblog.cn/tags/Object%E3%80%81prototype%E3%80%81%E5%AF%B9%E8%B1%A1%E3%80%81%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E7%BB%A7%E6%89%BF/"/>
+      <category term="Object" scheme="http://wayneblog.cn/tags/Object/"/>
+    
+      <category term="prototype" scheme="http://wayneblog.cn/tags/prototype/"/>
+    
+      <category term="对象" scheme="http://wayneblog.cn/tags/%E5%AF%B9%E8%B1%A1/"/>
+    
+      <category term="原型" scheme="http://wayneblog.cn/tags/%E5%8E%9F%E5%9E%8B/"/>
+    
+      <category term="原型链" scheme="http://wayneblog.cn/tags/%E5%8E%9F%E5%9E%8B%E9%93%BE/"/>
+    
+      <category term="继承" scheme="http://wayneblog.cn/tags/%E7%BB%A7%E6%89%BF/"/>
     
   </entry>
   
@@ -533,7 +567,7 @@
     <link href="http://wayneblog.cn/2016/10/15/RegExp/"/>
     <id>http://wayneblog.cn/2016/10/15/RegExp/</id>
     <published>2016-10-15T06:45:20.000Z</published>
-    <updated>2017-02-06T11:12:33.488Z</updated>
+    <updated>2017-02-06T11:42:41.154Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、正则的应用"><a href="#一、正则的应用" class="headerlink" title="一、正则的应用"></a>一、正则的应用</h2><ol>
 <li><p>JS实现JQ中的addClass、removeClass、hasClass</p>
@@ -577,7 +611,9 @@
       <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
     
     
-      <category term="标准库、RegExp" scheme="http://wayneblog.cn/tags/%E6%A0%87%E5%87%86%E5%BA%93%E3%80%81RegExp/"/>
+      <category term="标准库" scheme="http://wayneblog.cn/tags/%E6%A0%87%E5%87%86%E5%BA%93/"/>
+    
+      <category term="RegExp" scheme="http://wayneblog.cn/tags/RegExp/"/>
     
   </entry>
   
@@ -768,6 +804,8 @@
     
       <category term="javascript" scheme="http://wayneblog.cn/tags/javascript/"/>
     
+      <category term="标准库" scheme="http://wayneblog.cn/tags/%E6%A0%87%E5%87%86%E5%BA%93/"/>
+    
       <category term="属性标签" scheme="http://wayneblog.cn/tags/%E5%B1%9E%E6%80%A7%E6%A0%87%E7%AD%BE/"/>
     
       <category term="闭包" scheme="http://wayneblog.cn/tags/%E9%97%AD%E5%8C%85/"/>
@@ -775,8 +813,6 @@
       <category term="递归" scheme="http://wayneblog.cn/tags/%E9%80%92%E5%BD%92/"/>
     
       <category term="OOP" scheme="http://wayneblog.cn/tags/OOP/"/>
-    
-      <category term="标准库" scheme="http://wayneblog.cn/tags/%E6%A0%87%E5%87%86%E5%BA%93/"/>
     
   </entry>
   

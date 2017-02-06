@@ -2,30 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://wayneblog.cn/2016/12/15/prototype/</loc>
+    <loc>http://wayneblog.cn/2016/10/15/RegExp/</loc>
     
-    <lastmod>2017-02-06T11:39:10.187Z</lastmod>
+    <lastmod>2017-02-06T11:42:41.154Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wayneblog.cn/2016/12/27/Asynchronous/</loc>
+    <loc>http://wayneblog.cn/2016/12/15/prototype/</loc>
     
-    <lastmod>2017-02-06T11:24:47.867Z</lastmod>
+    <lastmod>2017-02-06T11:42:34.258Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://wayneblog.cn/2016/12/28/module/</loc>
     
-    <lastmod>2017-02-06T11:19:31.828Z</lastmod>
+    <lastmod>2017-02-06T11:42:15.335Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://wayneblog.cn/2016/10/15/RegExp/</loc>
+    <loc>http://wayneblog.cn/2016/12/30/Javascript-event/</loc>
     
-    <lastmod>2017-02-06T11:12:33.488Z</lastmod>
+    <lastmod>2017-02-06T11:42:03.776Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://wayneblog.cn/2016/12/27/Asynchronous/</loc>
+    
+    <lastmod>2017-02-06T11:41:03.038Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>http://wayneblog.cn/2016/12/29/responsive-project/</loc>
     
     <lastmod>2017-02-06T10:47:08.517Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://wayneblog.cn/2016/12/30/Javascript-event/</loc>
-    
-    <lastmod>2017-02-06T10:41:02.291Z</lastmod>
     
   </url>
   
