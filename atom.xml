@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wayneblog.cn/"/>
-  <updated>2017-02-06T10:39:05.203Z</updated>
+  <updated>2017-02-06T10:41:02.291Z</updated>
   <id>http://wayneblog.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://wayneblog.cn/2016/12/30/Javascript-event/"/>
     <id>http://wayneblog.cn/2016/12/30/Javascript-event/</id>
     <published>2016-12-30T04:35:20.000Z</published>
-    <updated>2017-02-06T10:39:05.203Z</updated>
+    <updated>2017-02-06T10:41:02.291Z</updated>
     
     <content type="html"><![CDATA[<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><p>个人认为：不论是浏览器自带的事件，还是自定义事件，都是观察者模式的实现。更确切地说：事件流是会流动的，流到哪个节点，事件在哪里发生，事件发生时，节点便会调用在这个节点绑定的事件处理程序。节点是被观察者，事件处理程序是观察者，当事件流流到被观察者时，被观察者会对外宣称“我这里发生了某个事件”，即通知观察者，也就是节点调用事件处理程序。事件流是不知道被观察者有多少个的，所以即使是0个，事件流也会继续流，流到节点时，节点会遍历自己注册的事件处理程序，存在就调用。具体浏览器的实现和优化肯定更加复杂和精妙，但原理应该是这样（以上为个人理解）。</p>
 <h3 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h3><p>事件流分为事件冒泡和事件捕获：</p>
@@ -218,8 +218,7 @@
 <li><code>keydown</code>、<code>keyup</code> 中的 event 有 keyCode, 与ASCII 码中对应小写字母或数字的编码相同。</li>
 </ul>
 </blockquote>
-<p>##内存和性能</p>
-<blockquote>
+<h2 id="内存和性能"><a href="#内存和性能" class="headerlink" title="内存和性能"></a>内存和性能</h2><blockquote>
 <ul>
 <li>每个函数都是对象，都会占用内存；内存中的对象越多，性能就越差。</li>
 <li>必须事先指定所有事件处理程序而导致的 DOM 访问次数，会延迟整个页面的交互就绪时间。</li>
