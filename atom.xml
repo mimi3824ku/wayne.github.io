@@ -342,6 +342,57 @@
   </entry>
   
   <entry>
+    <title>模块化</title>
+    <link href="http://wayneblog.cn/2016/12/28/module/"/>
+    <id>http://wayneblog.cn/2016/12/28/module/</id>
+    <published>2016-12-28T03:45:20.000Z</published>
+    <updated>2017-02-06T11:19:31.828Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、模块化AMD、CMD、CommonJS"><a href="#一、模块化AMD、CMD、CommonJS" class="headerlink" title="一、模块化AMD、CMD、CommonJS"></a>一、模块化AMD、CMD、CommonJS</h2><h3 id="1-模块化的简单理解："><a href="#1-模块化的简单理解：" class="headerlink" title="1. 模块化的简单理解："></a>1. 模块化的简单理解：</h3><p>模块化，简单的来说模块相当于一个功能，当需要用的时候就去调用模块，目前有两种模块规范，AMD是用于浏览器端的，CommonJS是用于服务器端的；</p>
+<h3 id="2-AMD（异步模块定义）"><a href="#2-AMD（异步模块定义）" class="headerlink" title="2. AMD（异步模块定义）"></a>2. AMD（异步模块定义）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">define(id?, dependencies?, factory);定义模块</div><div class="line">id: 模块名，一般不写</div><div class="line">dependencies: 已被模块标识的数组字面量</div><div class="line">factory: 模块初始化要执行的函数或对象，函数只被执行一次，对象为输出值</div><div class="line"></div><div class="line">require([&apos;moduleA&apos;,&apos;moduleB&apos;],function(moduleA,moduleB)&#123;</div><div class="line">    // some code here</div><div class="line">&#125;)调用模块</div><div class="line"></div><div class="line">第一个参数是数组，表示所依赖的模块；第二个参数是回调函数，所依赖的模块以参数形式传入即可在回调函数内部调用；只有当模块加载完成才会执行回调函数；</div><div class="line">require===requirejs</div></pre></td></tr></table></figure>
+<h3 id="3-require-js"><a href="#3-require-js" class="headerlink" title="3. require.js"></a>3. require.js</h3><ul>
+<li>require.js加载的模块，是按照AMD规范、用define()函数定义的模块。</li>
+<li>解决两个问题<ul>
+<li>实现js文件的异步加载，避免网页失去响应；</li>
+<li>管理模块之间的依赖性，便于代码的编写和维护。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">//第一步：先加载require.js 里面定义了define&amp;require两个API</div><div class="line">&lt;script src=&quot;js/require.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script src=&quot;js/require.js&quot; defer async=&quot;true&quot; &gt;&lt;/script&gt; /*为了防止堵塞，可写在网页底部也可加上defer async=&quot;true&quot;*/</div><div class="line"></div><div class="line">//第二步：加载主模块main.js</div><div class="line">//main.js相当于网页的入口,主模块是要依赖其他模块的,data-main用来指定网页程序的主模块</div><div class="line">&lt;script src=&quot;js/require.js&quot; data-main=&quot;js/main&quot;&gt;&lt;/script&gt;</div><div class="line"></div><div class="line">//第三步：配置加载路径require.config</div><div class="line">re.config(&#123;</div><div class="line">    baseUrl: &quot;js&quot;,</div><div class="line">    paths: &#123;</div><div class="line">        &quot;jquery&quot;: &quot;lib/jquery&quot;,</div><div class="line">        &quot;backbone&quot;: &quot;lib/backbone.min&quot;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line">//以上paths中配置的实际路径为baseUrl+lib/</div><div class="line">//paths也可以指定网址</div><div class="line"></div><div class="line">//第四步：定义模块</div><div class="line">define(id?, dependencies?, factory)</div><div class="line"></div><div class="line">//第五步：加载模块</div><div class="line">require([&apos;moduleA&apos;,&apos;moduleB&apos;],function(moduleA,moduleB)&#123;</div><div class="line">    // some code here</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>//第六步：优化</p>
+<ul>
+<li>require.js的优化：<br>require.js要求，每个模块是一个单独的js文件。这样的话，如果加载多个模块，就会发出多次HTTP请求，会影响网页的加载速度。因此，require.js提供了一个<a href="http://requirejs.org/docs/optimization.html" target="_blank" rel="external">优化工具</a>，当模块部署完毕以后，可以用这个工具将多个模块合并在一个文件中，减少HTTP请求数。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">build.js是用来做打包的配置工作，区分配置路径的文件和build.js打包配置文件；</div></pre></td></tr></table></figure>
+<h3 id="4-CommonJS"><a href="#4-CommonJS" class="headerlink" title="4. CommonJS"></a>4. CommonJS</h3><ul>
+<li>CommonJS是服务器端模块的规范，Node.js采用了这个规范。Node.JS首先采用了js模块化的概念。</li>
+<li><p>CommonJS定义的模块分为:{模块引用(require)} {模块定义(exports)} {模块标识(module)}<br>require()用来引入外部模块；exports对象用于导出当前模块的方法或变量，唯一的导出口；module对象就代表模块本身。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//sum.js</div><div class="line">exports.sum = function()&#123;...做加操  作..&#125;;</div><div class="line"></div><div class="line">//calculate.js</div><div class="line">var math = require(&apos;sum&apos;);</div><div class="line">exports.add = function(n)&#123;</div><div class="line">    return math.sum(val,n);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>CommonJS是同步加载的，由于所有的模块都存放在本地硬盘，可以同步加载完成，等待时间就是硬盘的读取时间。但是，对于浏览器，这却是一个大问题，因为模块都放在服务器端，等待时间取决于网速的快慢，可能要等很长时间，浏览器处于”假死”状态。</p>
+</li>
+</ul>
+<h3 id="5-CMD"><a href="#5-CMD" class="headerlink" title="5.CMD"></a>5.CMD</h3><ul>
+<li>通用模块定义。该规范明确了模块的基本书写格式和基本交互规则。该规范是在国内发展出来的。AMD是依赖关系前置，CMD是按需加载。<br>在 CMD 规范中，一个模块就是一个文件。代码的书写格式如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">define(id?,deps?,factory)</div><div class="line"></div><div class="line">define(&apos;hello&apos;, [&apos;jquery&apos;], function(require, exports, module) &#123;</div><div class="line">    //require的作用</div><div class="line">    var a = require(&apos;./a&apos;);</div><div class="line">    a.dosomething();</div><div class="line">    //require.async(id,callback?)的作用</div><div class="line">    require.async([&apos;./b&apos;,&apos;./c&apos;],function(b,c)&#123;</div><div class="line">        b.dosomething();</div><div class="line">        c.dosomething();</div><div class="line">    &#125;)</div><div class="line">    </div><div class="line">    //exports</div><div class="line">    //对外提供catColor属性</div><div class="line">    exports.catColor = &apos;blue&apos;;</div><div class="line">    //对外提供doSomething方法</div><div class="line">    exports.doSomethig = function()&#123;&#125;;</div><div class="line">    </div><div class="line">    //除了给 exports 对象增加成员，还可以使用 return 直接向外提供接口。</div><div class="line">    define(function(require) &#123;</div><div class="line"></div><div class="line">   // 通过 return 直接提供接口</div><div class="line">  return &#123;</div><div class="line">    foo: &apos;bar&apos;,</div><div class="line">    doSomething: function() &#123;&#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">    //只通过 exports参数来提供接口，有时无法满足开发者的所有需求。比如当模块的接口是某个类的实例时，需要通过 module.exports 来实现：</div><div class="line"></div><div class="line">    // exports 是 module.exports 的一个引用</div><div class="line">  console.log(module.exports === exports); // true</div><div class="line">    // 重新给 module.exports 赋值</div><div class="line">  module.exports = new SomeClass();</div><div class="line">    // exports 不再等于 module.exports</div><div class="line">  console.log(module.exports === exports); // false</div><div class="line"></div><div class="line">    </div><div class="line">&#125;);</div><div class="line">//factory有默认的三个参数，require、exports、module</div><div class="line">//require用于获取其他模块提供的接口</div><div class="line">//require 是同步往下执行，require.async则是异步回调执行require.async一般用来加载可延迟异步加载的模块。</div><div class="line">//exports 是一个对象，用来向外提供模块接口。</div><div class="line">//传给 factory 构造方法的 exports 参数是 module.exports 对象的一个引用。</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="external">AMD规范</a><br><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">阮一峰require.js的用法</a><br><a href="https://github.com/seajs/seajs/issues/242" target="_blank" rel="external">CMD 模块定义规范</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      模块化的简单总结
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
+      <category term="模块化、AMD、CMD、CommonJS、require.js" scheme="http://wayneblog.cn/tags/%E6%A8%A1%E5%9D%97%E5%8C%96%E3%80%81AMD%E3%80%81CMD%E3%80%81CommonJS%E3%80%81require-js/"/>
+    
+  </entry>
+  
+  <entry>
     <title>server mock</title>
     <link href="http://wayneblog.cn/2016/12/02/server-mock/"/>
     <id>http://wayneblog.cn/2016/12/02/server-mock/</id>
