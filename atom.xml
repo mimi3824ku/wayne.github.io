@@ -442,12 +442,12 @@
     <link href="http://wayneblog.cn/2016/12/15/prototype/"/>
     <id>http://wayneblog.cn/2016/12/15/prototype/</id>
     <published>2016-12-15T04:35:20.000Z</published>
-    <updated>2017-02-06T11:37:07.976Z</updated>
+    <updated>2017-02-06T11:38:11.673Z</updated>
     
-    <content type="html"><![CDATA[<p>###1. 构造函数里面的变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function People()&#123;</div><div class="line">    var sex = &apos;male&apos;,//函数内部的局部变量</div><div class="line">    this.name = name;//实例对象的属性</div><div class="line">    this.age = age;</div><div class="line">    People.age = 30;//函数本身的属性，因为函数本身也是对象；</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+    <content type="html"><![CDATA[<h3 id="1-构造函数里面的变量"><a href="#1-构造函数里面的变量" class="headerlink" title="1. 构造函数里面的变量"></a>1. 构造函数里面的变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function People()&#123;</div><div class="line">    var sex = &apos;male&apos;,//函数内部的局部变量</div><div class="line">    this.name = name;//实例对象的属性</div><div class="line">    this.age = age;</div><div class="line">    People.age = 30;//函数本身的属性，因为函数本身也是对象；</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>函数执行一定要有return结果，不然就会return出undefined，不用new的话People本质上就是一个普通函数，什么都不会去执行，People和people没有区别，知识约定俗成用首字母大写区分构造函数，不用new的话People里面的this就是window;<br><img src="http://i1.piimg.com/567571/74359fbbed0e53b7.png" alt=""></p>
 <p>p1要是没有name属性的话就会在<strong>proto</strong>里面找~~反正都会先从自身找。原型对象和构造函数的作用就是可以重复利用，类似插件，我们把属性写到构造函数内，把公共的方法写到prototype内；<br>任何对象都是创建出来的！<br>prototype是函数所固有的，而<strong>proto</strong>是对象所固有的；函数的prototype是天生就有的，而对象的<strong>proto</strong>是对象的创造者函数里面的prototype；一切对象都是由Object这个函数创建的</p>
-<p>###2. 原型链<br>任何对象都有一个toString的方法，这个方法是Object的，是顶层创建者的原型对象里面拥有的方法，自身没有定义就往<strong>proto</strong>找，再没有就继续往创造出prototype的对象里面找，就是Object；</p>
+<h3 id="2-原型链"><a href="#2-原型链" class="headerlink" title="2. 原型链"></a>2. 原型链</h3><p>任何对象都有一个toString的方法，这个方法是Object的，是顶层创建者的原型对象里面拥有的方法，自身没有定义就往<strong>proto</strong>找，再没有就继续往创造出prototype的对象里面找，就是Object；</p>
 <p>instanceof只要是它的原型链上的，就都返回true;判断对象是不是某个构造函数的实例；<br>p1 instanceof People实际就是p1._proto__ === People.prototype，实际上是做了这么一个判断；</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">用于判断obj是否是构造函数的实例</div><div class="line">function isInstanceOf(obj,Func)&#123;</div><div class="line">    var __proto__ = obj.__proto__;</div><div class="line">    do&#123;</div><div class="line">        if(__proto__===Func.prototype) return</div><div class="line">        if(!__proto__) return false;//最后Object肯定没有__proto__</div><div class="line">    &#125;while(__proto__=__proto__.__proto__)</div><div class="line">    return false;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>instanceof运算符：</p>
@@ -458,8 +458,7 @@
 <li>注意，instanceof运算符只能用于对象，不适用原始类型的值。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var s = &apos;hello&apos;;</div><div class="line">s instanceof String // false</div><div class="line"></div><div class="line">undefined instanceof Object // false</div><div class="line">null instanceof Object // false</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>###2. 继承的两种方法</p>
-<ul>
+<h3 id="3-继承的两种方法"><a href="#3-继承的两种方法" class="headerlink" title="3. 继承的两种方法"></a>3. 继承的两种方法</h3><ul>
 <li>第一种：分成两步<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">第一步是在子类的构造函数中，调用父类的构造函数。</div><div class="line">function Super(name,age)&#123;</div><div class="line">    this.name = name;</div><div class="line">    this.age = age;</div><div class="line">&#125;</div><div class="line">function Sub(value)&#123;</div><div class="line">    Super.call(this);</div><div class="line">    this.prop = value;</div><div class="line">&#125;</div><div class="line">上面代码中，Sub是子类的构造函数，this是子类的实例。在实例上调用父类的构造函数Super，就会让子类实例具有父类实例的属性。</div></pre></td></tr></table></figure>
 </li>
 </ul>
