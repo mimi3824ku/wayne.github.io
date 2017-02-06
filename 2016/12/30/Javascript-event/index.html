@@ -1,0 +1,1428 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="事件," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="wayne's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="对基础进行一个总结回顾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript事件总结">
+<meta property="og:url" content="http://wayneblog.cn/2016/12/30/Javascript-event/index.html">
+<meta property="og:site_name" content="wayne's blog">
+<meta property="og:description" content="对基础进行一个总结回顾">
+<meta property="og:image" content="http://i1.piimg.com/567571/8a3af36c8bc7d090.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/f51d8dbcd0d5b373.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/2ac062602fdca7a7.png">
+<meta property="og:image" content="http://i1.piimg.com/567571/e19b404e62fbc140.png">
+<meta property="og:image" content="http://p1.bpimg.com/567571/4737369b32025045.png">
+<meta property="og:updated_time" content="2017-02-06T09:03:18.054Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript事件总结">
+<meta name="twitter:description" content="对基础进行一个总结回顾">
+<meta name="twitter:image" content="http://i1.piimg.com/567571/8a3af36c8bc7d090.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://wayneblog.cn/2016/12/30/Javascript-event/"/>
+
+
+
+
+
+  <title> Javascript事件总结 | wayne's blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?41e5c54e1f6c0b08d4961323250de458";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wayne's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" style="text-align:center;padding: 10px 0;">
+<li style="list-style:none;border:1px dotted #333;border-radius:3px;width:150px;margin:0 auto;background: yellow;"> <a style="text-decoration:none;color:red;border:none" title="High一下" href='javascript:(function() {
+    function c() {
+        var e = document.createElement("link");
+        e.setAttribute("type", "text/css");
+        e.setAttribute("rel", "stylesheet");
+        e.setAttribute("href", f);
+        e.setAttribute("class", l);
+        document.body.appendChild(e)
+    }
+
+    function h() {
+        var e = document.getElementsByClassName(l);
+        for (var t = 0; t < e.length; t++) {
+            document.body.removeChild(e[t])
+        }
+    }
+
+    function p() {
+        var e = document.createElement("div");
+        e.setAttribute("class", a);
+        document.body.appendChild(e);
+        setTimeout(function() {
+            document.body.removeChild(e)
+        }, 100)
+    }
+
+    function d(e) {
+        return {
+            height : e.offsetHeight,
+            width : e.offsetWidth
+        }
+    }
+
+    function v(i) {
+        var s = d(i);
+        return s.height > e && s.height < n && s.width > t && s.width < r
+    }
+
+    function m(e) {
+        var t = e;
+        var n = 0;
+        while (!!t) {
+            n += t.offsetTop;
+            t = t.offsetParent
+        }
+        return n
+    }
+
+    function g() {
+        var e = document.documentElement;
+        if (!!window.innerWidth) {
+            return window.innerHeight
+        } else if (e && !isNaN(e.clientHeight)) {
+            return e.clientHeight
+        }
+        return 0
+    }
+
+    function y() {
+        if (window.pageYOffset) {
+            return window.pageYOffset
+        }
+        return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    }
+
+    function E(e) {
+        var t = m(e);
+        return t >= w && t <= b + w
+    }
+
+    function S() {
+        var e = document.createElement("audio");
+        e.setAttribute("class", l);
+        e.src = i;
+        e.loop = false;
+        e.addEventListener("canplay", function() {
+            setTimeout(function() {
+                x(k)
+            }, 500);
+            setTimeout(function() {
+                N();
+                p();
+                for (var e = 0; e < O.length; e++) {
+                    T(O[e])
+                }
+            }, 15500)
+        }, true);
+        e.addEventListener("ended", function() {
+            N();
+            h()
+        }, true);
+        e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+        document.body.appendChild(e);
+        e.play()
+    }
+
+    function x(e) {
+        e.className += " " + s + " " + o
+    }
+
+    function T(e) {
+        e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+    }
+
+    function N() {
+        var e = document.getElementsByClassName(s);
+        var t = new RegExp("\\b" + s + "\\b");
+        for (var n = 0; n < e.length; ) {
+            e[n].className = e[n].className.replace(t, "")
+        }
+    }
+
+    var e = 30;
+    var t = 30;
+    var n = 350;
+    var r = 350;
+    var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+    var s = "mw-harlem_shake_me";
+    var o = "im_first";
+    var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+    var a = "mw-strobe_light";
+    var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+    var l = "mw_added_css";
+    var b = g();
+    var w = y();
+    var C = document.getElementsByTagName("*");
+    var k = null;
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            if (E(A)) {
+                k = A;
+                break
+            }
+        }
+    }
+    if (A === null) {
+        console.warn("Could not find a node of the right size. Please try a different page.");
+        return
+    }
+    c();
+    S();
+    var O = [];
+    for (var L = 0; L < C.length; L++) {
+        var A = C[L];
+        if (v(A)) {
+            O.push(A)
+        }
+    }
+})()    '>Make some noise</a> </li>
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://wayneblog.cn/2016/12/30/Javascript-event/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Wayne Luo">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="wayne's blog">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="wayne's blog" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Javascript事件总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-30T12:35:20+08:00">
+                2016-12-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2016/12/30/Javascript-event/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/30/Javascript-event/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/30/Javascript-event/" class="leancloud_visitors" data-flag-title="Javascript事件总结">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+              <div class="post-description">
+                  对基础进行一个总结回顾
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>##事件<br>个人认为：不论是浏览器自带的事件，还是自定义事件，都是观察者模式的实现。更确切地说：事件流是会流动的，流到哪个节点，事件在哪里发生，事件发生时，节点便会调用在这个节点绑定的事件处理程序。节点是被观察者，事件处理程序是观察者，当事件流流到被观察者时，被观察者会对外宣称“我这里发生了某个事件”，即通知观察者，也就是节点调用事件处理程序。事件流是不知道被观察者有多少个的，所以即使是0个，事件流也会继续流，流到节点时，节点会遍历自己注册的事件处理程序，存在就调用。具体浏览器的实现和优化肯定更加复杂和精妙，但原理应该是这样（以上为个人理解）。</p>
+<p>###事件流<br>事件流分为事件冒泡和事件捕获：</p>
+<blockquote>
+<ul>
+<li>如果你把手指放在圆心上，那么你的手指指向的不是一个圆，而是纸上的所有圆。在浏览器上单击按钮的同时，你也单击了按钮的容器元素，甚至也单击了整个页面。事件流描述的是从页面中接收事件的顺序。</li>
+<li>IE开发团队提出了事件冒泡流、Netscape开发团队提出了事件捕获流。</li>
+</ul>
+</blockquote>
+<p>###事件冒泡</p>
+<blockquote>
+<ul>
+<li>事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点，所有现代浏览器都支持事件冒泡，除IE5.5外，均一直冒泡到window。</li>
+<li>事件冒泡示意图：<br><img src="http://i1.piimg.com/567571/8a3af36c8bc7d090.png" alt=""></li>
+</ul>
+</blockquote>
+<p>###事件捕获</p>
+<blockquote>
+<ul>
+<li>不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。IE9+、Safari、Chrome、Opera和Firefox支持，且从window开始捕获（尽管DOM2 级事件规范要求从document）</li>
+<li>事件捕获示意图：<br><img src="http://i1.piimg.com/567571/f51d8dbcd0d5b373.png" alt=""></li>
+<li>由于老版本的浏览器不支持，因此很少有人使用事件捕获。我们也建议读者放心地使用事件冒泡，在有特殊需要时再使用事件捕获。</li>
+</ul>
+</blockquote>
+<ul>
+<li>为了彻底理解事件冒泡和捕获，这里写了个例子：<br>=<br>  &lt;!DOCTYPE html&gt;  <html lang="zh-cn"><br>  <head><br>      <meta charset="UTF-8"><br>      <title>test1</title><br>      <link rel="stylesheet" href="test1.css"><br>  </head><br>  <body><br>      <div id="a"><br>          <div id="b"><br>              <div id="c"></div><br>          </div><br>      </div><br>      <script src="test1.js"></script><br>  </body><br>  </html>
+
+</li>
+</ul>
+<p>–</p>
+<pre><code>//test1.css
+#a{
+    width: 300px;
+    height: 300px;
+    background: pink;
+}
+#b{
+    width: 200px;
+    height: 200px;
+    background: blue;
+}
+#c{
+    width: 100px;
+    height: 100px;
+    background: yellow;
+}
+</code></pre><p>–</p>
+<pre><code>//test1.js
+var a = document.getElementById(&quot;a&quot;),
+    b = document.getElementById(&quot;b&quot;),
+    c = document.getElementById(&quot;c&quot;);
+    c.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;c1&quot;)
+        // 注意第三个参数没有传进 false , 因为默认传进来的是 false，代表冒泡阶段调用，个人认为处于目标阶段也会调用的
+    });
+    c.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;c2&quot;);
+    }, true);
+    b.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;b&quot;);
+    }, true);
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a1&quot;);
+    }, true);
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a2&quot;)
+    });
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a3&quot;);
+        event.stopImmediatePropagation();
+    }, true);
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a4&quot;);
+    }, true);
+</code></pre><ul>
+<li><p>效果图<br><img src="http://p1.bpimg.com/567571/2ac062602fdca7a7.png" alt=""></p>
+</li>
+<li><p><strong>点击 c 或 b，输出：a1、a3</strong></p>
+</li>
+<li>stopImmediatePropagation 包含了 stopPropagation 的功能，即阻止事件传播（捕获或冒泡），但<strong>同时也阻止该元素上后来绑定的事件处理程序被调用</strong>，所以不输出 a4，因为事件捕获被拦截了，自然不会触发 b、c 上的事件，所以不输出 b、c1、c2，冒泡更谈不上了，所以不输出 a2。有人会觉得上面的表述有一点点问题，为什么捕获被拦截了，c1 就不输出了呢？ c1 应该是冒泡阶段被调用的呀，所以应该改为另一个表述：“…冒泡更谈不上，所以不输出 c1、a2”。但另一个表述是错的，下面会分析到。</li>
+<li><strong>点击 a，输出 a1、a2、a3</strong></li>
+<li>不应该是 a1、a3、a2 吗？a1、a3 可是在捕获阶段被调用的处理程序啊，a2 是在冒泡阶段被调用的啊。这里正是要说明的：虽然这三个事件处理程序注册时指定了true、false，但现在事件流是处于目标阶段，不是冒泡阶段、也不是捕获阶段，事件处理程序被调用的顺序是注册的顺序。不论你指定的是 true or false. 这也解释了上面提到的“另一种表述”为什么是错误的。</li>
+<li>更深一步解释是：要区分事件流和事件处理程序，不论事件处理程序存不存在，事件流都会传播。这是一个观察者模式，绑定事件的节点是被观察者、事件处理程序是观察者，事件流是不知道观察者的存在的，所以你点击页面的时候，事件流一定要传播，传播到某一个节点时，节点去通知所有观察者，也就是调用事件处理程序（有可能观察者不存在）。</li>
+<li>当一个事件流来到一个节点时，事件流可能在捕获阶段（正在流向最深层次的节点）、可能在处于目标阶段（已经流到了目标，也就是event.target）、也可能在冒泡阶段（正在流向最外层节点）。而事件处理程序是这么处理的：<strong>① 注册时第三个参数指定为 true 时，事件流到来，如果事件流是捕获阶段或处于目标阶段，则调用该事件处理程序。②注册时第三个参数指定为 false 时，当事件流到来，如果事件流是处于目标阶段或冒泡阶段，则调用该事件处理程序。</strong></li>
+<li>注释掉 event.stopImmediatePropagation，点击 c，输出 a1、a3、a4、b、c1、c2、a2</li>
+<li>另外，如果同一个事件处理程序（指针相同，比如用 handler 保存的事件处理程序），用 addEventListener 或 attachEvent 绑定多次，如果第三个参数是相同的话，也只会被调用一次。但如果第三个参数一个设置为true，另一个设置为false，那么会被调用两次。</li>
+</ul>
+<p>##DOM事件流</p>
+<blockquote>
+<ul>
+<li>“DOM2级事件”规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。首先发生的是事件捕获，为截获事件提供了机会。然后是实际的目标接收到事件。最后一个阶段是冒泡阶段。（事件处理中“处于目标阶段”被看成冒泡阶段的一部分）。</li>
+<li>IE9、Safari、Chrome、Firefox和Opera9.5及更高版本都会在捕获阶段触发事件对象上的事件，就是有两个机会在目标对象上面操作事件。（尽管DOM2级事件规范明确要求捕获阶段不涉及事件目标）。</li>
+</ul>
+</blockquote>
+<p>##事件处理程序</p>
+<p>###DOM0级事件处理程序</p>
+<blockquote>
+<ul>
+<li>每个元素（包括window 和document）都有自己的事件处理程序属性，这些属性<strong>通常全部小写</strong>。使用 DOM0 级指定的事件处理程序被认为是元素的方法。this 引用当前元素。通过 this 可以访问元素的任何属性和方法(但经过测试，class、自定义属性不能直接访问，通过 [] 访问也不行，id、value、type 这种可以)。DOM0 级事件处理程序在冒泡阶段被处理。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var btn = document.getElementById(&quot;myBtn&quot;);</div><div class="line">btn.onclick = function () &#123;</div><div class="line">    alert(this.id); //&quot;myBtn&quot;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>###DOM2级事件处理程序</p>
+<blockquote>
+<ul>
+<li><code>addEventListener()</code> 包含三个参数，要处理的事件名、事件处理函数、布尔值，布尔值为true，表示在捕获阶段调用事件处理程序，反之在冒泡阶段调用。</li>
+<li>DOM2 级事件处理程序中的 this 也指向 <code>addEventListener</code> 的那个元素。</li>
+<li>可以添加多个事件处理程序，按添加顺序依次调用。</li>
+</ul>
+</blockquote>
+<pre><code>//removeEventListener 无法移除匿名函数的事件处理程序。
+var btn = document.getElementById(&quot;myBtn&quot;);
+var handler = function () {
+   alert(this.id);
+};
+btn.addEventListener(&quot;click&quot;, handler, false);
+//这里省略了其他代码
+btn.removeEventListener(&quot;click&quot;, handler, false); // 有效！
+</code></pre><blockquote>
+<ul>
+<li>IE9、Firefox、Safari、Chrome 和Opera 支持DOM2 级事件处理程序。</li>
+</ul>
+</blockquote>
+<p>###IE事件处理程序</p>
+<blockquote>
+<ul>
+<li><code>attachEvent</code> <code>detachEvent</code> 接收两个参数，事件处理程序名称、事件处理程序函数。由于IE8及更早版本只支持事件冒泡，所以该事件处理程序只支持事件冒泡。</li>
+<li>老版本的Opera支持这种方法，但现在Opera已经改用blink内核，IE11已经不支持这种方法，注意 IE9 就已经支持 DOM2 级事件处理程序了。</li>
+<li>特别要注意：第一个参数包含on，比如onclick。</li>
+<li>区别于DOM0 级事件处理程序，<code>this</code> 指向 ‘window’。</li>
+<li>也可以添加多个事件处理程序。</li>
+</ul>
+</blockquote>
+<p>###跨浏览器的事件处理程序</p>
+<pre><code>var EventUtil = {
+    addHandler: function(element, type, handler){
+        if (element.addEventListener){
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent){
+            element.attachEvent(&quot;on&quot; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = handler;
+        }
+    },
+    removeHandler: function(element, type, handler){
+        if (element.removeEventListener){
+            element.removeEventListener(type, handler, false);
+        } else if (element.detachEvent){
+            element.detachEvent(&quot;on&quot; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = null;
+        }
+    }
+};
+</code></pre><blockquote>
+<ul>
+<li>存在问题：</li>
+</ul>
+<ol>
+<li>IE事件处理程序 中的 this 指向 window。</li>
+<li>只支持 DOM0 级的浏览器不能多次添加事件处理程序，不过这种浏览器应该不多了，即使是IE8 也支持attachEvent。</li>
+<li>会不会有一些事件，在浏览器支持 DOM2 级事件处理程序的情况下，那些事件只能用 on + name 的形式呢？ 之前一直怀疑 (1).xhr.onreadystatechange() 和 (2).DOMNodeInserted 事件，这里我多虑了，经过验证，(1).是支持 DOM2 级事件的，(2).天生就是 DOM2 级的，而且也支持 DOM0 事件处理程序。这里只是为了打消我的疑虑，记录下来。</li>
+</ol>
+</blockquote>
+<p>##事件对象</p>
+<p>###DOM 中的事件对象</p>
+<blockquote>
+<ul>
+<li>兼容 DOM 的浏览器会将一个 event 对象传入事件处理程序， IE9 及更高版本可以，无论指定事件处理程序时使用什么方法（DOM0 级 DOM2 级），HTML 事件处理程序可以通过访问 event 变量得到 event 对象。</li>
+<li>event 中的属性和方法都是只读的</li>
+<li>常用属性：</li>
+</ul>
+<ol>
+<li><code>target</code> 事件的目标</li>
+<li><code>currentTarget</code> 绑定事件的元素，与 ‘this’ 的指向相同</li>
+<li><code>stopPropagation()</code> 取消事件的进一步捕获或冒泡。如果bubbles为true，则可以使用这个方法</li>
+<li><code>stopImmediatePropagation()</code> 取消事件的进一步捕获或冒泡，同时阻止任何事件处理程序被调用（DOM3级事件中新增）（这个说法不大准确，应该是<strong>阻止比该事件处理程序后注册的事件处理程序执行</strong>）</li>
+<li><code>preventDefault()</code> 取消事件的默认行为，比如点击链接跳转。如果 cancelable 是 true，则可以使用这个方法</li>
+<li><code>type</code> 被触发的事件类型</li>
+<li><code>eventPhase</code> 调用事件处理程序的阶段：1表示捕获阶段，2表示“处于目标”，3表示冒泡阶段</li>
+</ol>
+</blockquote>
+<pre><code>//this target currentTarget 举例：
+    document.body.onclick = function(event){
+        alert(event.currentTarget === document.body); //true
+        alert(this === document.body); //true
+        alert(event.target === document.getElementById(&quot;myBtn&quot;)); //true
+    };
+</code></pre><blockquote>
+<ul>
+<li>通过 <code>event.type</code> 与 <code>switch case</code> 组合，可以通过一个函数处理多个事件。</li>
+<li>只有在事件处理程序执行期间，<code>event</code> 对象才会存在；一旦事件处理程序执行完成，<code>event</code> 对象就会被销毁。</li>
+</ul>
+</blockquote>
+<p>###IE 中的事件对象</p>
+<blockquote>
+<ul>
+<li>DOM0 级的事件处理程序，event 作为 window 的一个属性存在。（从 IE9 开始，event 可以从参数中获得）</li>
+<li><code>attachEvent</code> 添加的事件处理程序，<code>event</code> 作为参数传入，也可以通过 <code>window</code> 来访问 <code>event</code> 对象。</li>
+<li>HTML 事件处理程序依然可以通过访问 <code>event</code> 变量得到 <code>event</code> 对象。</li>
+<li>属性和方法：</li>
+</ul>
+<ol>
+<li><code>cancelBubble</code> 设置 <code>true</code> 可以取消事件冒泡</li>
+<li><code>returnValue</code> 设置 <code>false</code> 可以取消事件的默认行为。</li>
+<li><code>srcElement</code> 事件的目标（与DOM中的 <code>target</code> 相同）</li>
+</ol>
+<ul>
+<li>注意事项：</li>
+</ul>
+<ol>
+<li><code>attachEvent</code> 中的 <code>event.srcElement === this</code> 吗？ 答案是否定的，因为前面说到过 <code>attachEvent</code> 中 <code>this</code> 指向 <code>window</code>, DOM0 级、DOM2 级 事件处理程序 <code>this</code> 才指向 <code>event.target / window.event.srcElement</code></li>
+</ol>
+</blockquote>
+<p>###跨浏览器的事件对象<br>    var EventUtil = {<br>        getEvent: function(event){<br>            return event ? event : window.event; // window.event DOM0级时IE<br>        },<br>        getTarget: function(event){<br>            return event.target || event.srcElement; // event.srcElement for IE<br>        },<br>        preventDefault: function(event){<br>            if (event.preventDefault){<br>                event.preventDefault();<br>            } else {<br>                event.returnValue = false; // IE<br>            }<br>        },<br>        stopPropagation: function(event){<br>            if (event.stopPropagation){<br>                event.stopPropagation();<br>            } else {<br>                event.cancelBubble = true; // IE<br>            }<br>        }<br>    };</p>
+<p>##事件类型</p>
+<blockquote>
+<ul>
+<li>DOM3 级事件规定了几类事件；HTML5 也定义了一组事件；还有一些事件没有规范，浏览器的实现不一致。</li>
+<li>DOM3 级事件模块在 DOM2 级事件模块基础上重新定义了这些事件，也添加了一些新事件。包括 IE9 在内的所有主流浏览器都支持 DOM2 级事件。IE9 也支持 DOM3 级事件。</li>
+</ul>
+</blockquote>
+<p>###UI事件类型</p>
+<blockquote>
+<ul>
+<li><p>load 事件，当页面完全加载后（包括所有图像、JavaScript 文件、CSS 文件等外部资源），就会触发 window 上面的 load 事件。</p>
+</li>
+<li><p>resize 事件</p>
+</li>
+</ul>
+<ol>
+<li>浏览器窗口大小发生变化时会触发该事件，这个事件在 window 上触发，IE、Safari、Chrome 和 Opera 会在浏览器窗口变化了 1 像素时就触发 resize 事件，然后随着变化不断重复触发。Firefox 则只会在用户停止调整窗口大小时才会触发。</li>
+<li>注意不要在这个事件的处理程序中加入大计算量的代码，或者采用函数节流的方式优化性能。</li>
+<li>浏览器窗口最小化或最大化时也会触发 resize 事件。</li>
+</ol>
+<ul>
+<li>scroll 事件</li>
+</ul>
+<ol>
+<li>该事件在 window 上发生，此处和书上讲的有点不一样，webkit 内核或 blink 内核的浏览器（Chrome、Opera、Safari）可以通过 <code>document.body.scrollTop</code> 获取页面被卷去的高度，而 Trident、Gecko （IE、火狐）可以通过 <code>document.documentElement.scrollTop</code>来获取该值。</li>
+<li>所以最好通过 <code>document.body.scrollTop + document.documentElement.scrollTop</code> 的方式获取 scrollTop 的值，因为两者之一会等于0，或者使用 <code>document.body.scrollTop || document.documentElement.scrollTop</code>，两者效果一致。</li>
+<li>发现普通元素，指定 scroll 的处理程序，通过 <code>event.target.scrollTop</code> 也是可以取得相应的值，兼容性没测试，用的时候注意一下。</li>
+</ol>
+</blockquote>
+<p>###常见事件</p>
+<blockquote>
+<ul>
+<li><code>click</code> 在用户单击住鼠标按钮或按下回车键时触发。 触发顺序 mousedown mouseup click，如果 mousedown、mouseup 其中之一被取消，就不会触发 click 事件。</li>
+<li><code>dblclick</code> 触发顺序 mousedown mouseup click mousedown mouseup click dblclick， 如果中间有事件被取消，dblclick 也不会被触发</li>
+<li><code>mousedown</code> 用户按下了任意鼠标按钮时触发。</li>
+<li><code>mouseup</code> 用户释放按钮时触发</li>
+<li><code>mouseenter</code> 在鼠标光标从元素外部首次移动到元素范围之内时触发。不冒泡，而且在光标移动到后代元素上不会触发。DOM2 级事件并没有定义这个事，但 DOM3 级事件将它纳入了规范。IE、Firefox9+和Opera支持这个事件。</li>
+<li><code>mouseleave</code> 在位于元素上方的鼠标光标移动到元素范围之外时触发。不冒泡，而且在光标移动到后代元素上不会触发。DOM2 级事件并没有定义这个事，但 DOM3 级事件将它纳入了规范。IE、Firefox9+ 和 Opera 支持这个事件。</li>
+<li><code>mouseover</code> 在鼠标指针位于一个元素外部，然后用户将其首次移入另一个元素边界之内时触发。不能通过键盘触发这个事件。</li>
+<li><code>mouseout</code> 在鼠标指针位于一个元素上方，然后用户将其移入另一个元素时触发。又移入的另一个元素可能位于前一个元素的外部，也可能是这个元素的子元素。不能通过键盘触发这个事件。</li>
+</ul>
+</blockquote>
+<p>mouseenter、mouseleave 和 mouseover、mouseout 的区别：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-cn&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;test1&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;test1.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;mouseover&quot;&gt;
+        &lt;div class=&quot;sub-mouseover&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;mouseenter&quot;&gt;
+        &lt;div class=&quot;sub-mouseenter&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;test1.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>–</p>
+<pre><code>//test1.css
+.wrap {
+    width: 200px;
+    height: 100px;
+}
+.mouseover {
+    background: pink;
+}
+.mouseenter {
+    margin-top: 30px;
+    background: gray;
+}
+.sub-mouseover,
+.sub-mouseenter {
+    width: 100px;
+    height: 50px;
+    background: #AE81FF;
+}
+</code></pre><p>–</p>
+<pre><code>//test1.js
+var div1 = document.querySelector(&quot;.mouseover&quot;),
+    div2 = document.querySelector(&quot;.mouseenter&quot;);
+div1.addEventListener(&quot;mouseover&quot;, function(){
+    console.log(&quot;div1 mouseover&quot;);
+});
+div1.addEventListener(&quot;mouseout&quot;, function(){
+    console.log(&quot;div1 mouseout&quot;);
+})
+div2.addEventListener(&quot;mouseenter&quot;, function(){
+    console.log(&quot;div2 mouseenter&quot;);
+})
+div2.addEventListener(&quot;mouseleave&quot;, function(){
+    console.log(&quot;div2 mouseleave&quot;);
+})
+</code></pre><ul>
+<li><p>效果图<br><img src="http://i1.piimg.com/567571/e19b404e62fbc140.png" alt=""></p>
+</li>
+<li><p>鼠标由左侧从上到下依次经过所有 div 的情况，输出 <code>div1 mouseover</code> <code>div1 mouseout</code> <code>div1 mouseover</code> <code>div1 mouseout</code> <code>div2 mouseenter</code> <code>div2 mouseleave</code></p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>mousemove</code> 当鼠标指针在元素内部移动时重复地触发。不能通过键盘触发这个事件。</li>
+<li>除了 <code>mouseenter</code>、<code>mousedleave</code>，所有鼠标事件都会冒泡，取消鼠标事件将会影响浏览器的默认行为，也会影响其它事件，因为鼠标事件与其它事件是密不可分的。</li>
+<li>关于 <code>dblclick</code> IE8 及之前版本中的实现有一个小bug，因此在双击事件中，会跳过第二个<code>mousedown</code> 和click事件，其顺序如下：<code>mousedown</code> <code>mouseup</code> <code>click</code> <code>mouseup</code> <code>dblclick</code>，但还是会触发 <code>dblclick</code> 事件</li>
+<li>客户区坐标位置：鼠标事件中的 event 都有 clientX clientY 属性，表示在视口中客户区的坐标位置，这些值不包括页面滚动的距离，因此这个位置并不表示鼠标在页面上的位置：<br><img src="http://p1.bpimg.com/567571/4737369b32025045.png" alt=""></li>
+</ul>
+</blockquote>
+<ul>
+<li>页面坐标位置：pageX、pageY，这两个属性表示鼠标光标在页面中的位置，在页面<strong>没有滚动</strong>的情况下，pageX 和 pageY 的值与 clientX、clientY 的值相等。IE8 及更早版本不支持事件对象上的页面坐标，不过使用客户区坐标和滚动信息可以计算出来。</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>keydown</code>: 当用户按下键盘上的任意键时触发，而且如果按住不放的话，会重复触发此事件。</li>
+<li><code>keypress</code> 当用户按下键盘上的字符键时触发，而且如果按住不放的话，会重复触发此事件。按下Esc 键也会触发这个事件。Safari 3.1 之前的版本也会在用户按下非字符键时触发keypress事件。</li>
+<li><code>keyup</code>：当用户释放键盘上的键时触发。</li>
+<li>触发顺序：<code>keydown</code>、<code>keypress</code>、<code>keyup</code>，<code>keydown</code>、<code>keypress</code> 都是在文本框发生变化之前被触发的; keyup 事件则是在文本框已经发生变化之后被触发的。</li>
+<li>如果用户按下了一个字符键不放，就会重复触发 <code>keydown</code> 和<code>keypress</code> 事件，直到用户松开该键为止。</li>
+<li><code>keydown</code>、<code>keyup</code> 中的 event 有 keyCode, 与ASCII 码中对应小写字母或数字的编码相同。</li>
+</ul>
+</blockquote>
+<p>##内存和性能</p>
+<blockquote>
+<ul>
+<li>每个函数都是对象，都会占用内存；内存中的对象越多，性能就越差。</li>
+<li>必须事先指定所有事件处理程序而导致的 DOM 访问次数，会延迟整个页面的交互就绪时间。</li>
+</ul>
+</blockquote>
+<p>###事件委托</p>
+<pre><code>&lt;body&gt;
+    &lt;ul id=&quot;myLinks&quot;&gt;
+        &lt;li id=&quot;goSomewhere&quot;&gt;Go somewhere&lt;/li&gt;
+        &lt;li id=&quot;doSomething&quot;&gt;Do something&lt;/li&gt;
+        &lt;li id=&quot;sayHi&quot;&gt;Say hi&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    (function(){
+        var list = document.getElementById(&quot;myLinks&quot;);
+        EventUtil.addHandler(list, &quot;click&quot;, function(event){
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            switch(target.id){
+                case &quot;doSomething&quot;:
+                    document.title = &quot;I changed the document&apos;s title&quot;;
+                    break;
+                case &quot;goSomewhere&quot;:
+                    location.href = &quot;http://www.wrox.com&quot;;
+                    break;
+                case &quot;sayHi&quot;:
+                    alert(&quot;hi&quot;);
+                    break;
+            }
+        });
+    })();
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre><blockquote>
+<ul>
+<li>上面的方法只取得了一个 DOM 元素，只添加了一个事件处理程序，占用的内存更少</li>
+<li>最适合采用事件委托技术的事件包块 <code>click</code>、<code>mousedown</code>、<code>mouseup</code>、<code>keydown</code>、<code>keyup</code> 和 <code>keypress</code></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>这里是你的幸福之源</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.png" alt="Wayne Luo WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="Wayne Luo Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/事件/" rel="tag"># 事件</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/02/server-mock/" rel="next" title="server mock">
+                <i class="fa fa-chevron-left"></i> server mock
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/30/Javascript-event/"
+     data-title="Javascript事件总结"
+     data-content=""
+     data-url="http://wayneblog.cn/2016/12/30/Javascript-event/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/30/Javascript-event/"
+           data-title="Javascript事件总结" data-url="http://wayneblog.cn/2016/12/30/Javascript-event/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Wayne Luo" />
+          <p class="site-author-name" itemprop="name">Wayne Luo</p>
+          <p class="site-description motion-element" itemprop="description">世事无常,淡然自若</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/mimi3824ku" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-heart"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="微信">
+                  
+                    <i class="fa fa-fw fa-weixin"></i>
+                  
+                  微信
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Wayne Luo</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wayne123"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("0QdATVp4SBiH1XdTuM2y5X7G-gzGzoHsz", "Nk31kXcmMq6YxwSSvjvOrdoy");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+<script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

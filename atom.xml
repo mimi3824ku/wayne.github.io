@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://wayneblog.cn/"/>
-  <updated>2016-12-02T13:47:32.923Z</updated>
+  <updated>2017-02-06T09:03:18.054Z</updated>
   <id>http://wayneblog.cn/</id>
   
   <author>
@@ -14,6 +14,407 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Javascript事件总结</title>
+    <link href="http://wayneblog.cn/2016/12/30/Javascript-event/"/>
+    <id>http://wayneblog.cn/2016/12/30/Javascript-event/</id>
+    <published>2016-12-30T04:35:20.000Z</published>
+    <updated>2017-02-06T09:03:18.054Z</updated>
+    
+    <content type="html"><![CDATA[<p>##事件<br>个人认为：不论是浏览器自带的事件，还是自定义事件，都是观察者模式的实现。更确切地说：事件流是会流动的，流到哪个节点，事件在哪里发生，事件发生时，节点便会调用在这个节点绑定的事件处理程序。节点是被观察者，事件处理程序是观察者，当事件流流到被观察者时，被观察者会对外宣称“我这里发生了某个事件”，即通知观察者，也就是节点调用事件处理程序。事件流是不知道被观察者有多少个的，所以即使是0个，事件流也会继续流，流到节点时，节点会遍历自己注册的事件处理程序，存在就调用。具体浏览器的实现和优化肯定更加复杂和精妙，但原理应该是这样（以上为个人理解）。</p>
+<p>###事件流<br>事件流分为事件冒泡和事件捕获：</p>
+<blockquote>
+<ul>
+<li>如果你把手指放在圆心上，那么你的手指指向的不是一个圆，而是纸上的所有圆。在浏览器上单击按钮的同时，你也单击了按钮的容器元素，甚至也单击了整个页面。事件流描述的是从页面中接收事件的顺序。</li>
+<li>IE开发团队提出了事件冒泡流、Netscape开发团队提出了事件捕获流。</li>
+</ul>
+</blockquote>
+<p>###事件冒泡</p>
+<blockquote>
+<ul>
+<li>事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点，所有现代浏览器都支持事件冒泡，除IE5.5外，均一直冒泡到window。</li>
+<li>事件冒泡示意图：<br><img src="http://i1.piimg.com/567571/8a3af36c8bc7d090.png" alt=""></li>
+</ul>
+</blockquote>
+<p>###事件捕获</p>
+<blockquote>
+<ul>
+<li>不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。IE9+、Safari、Chrome、Opera和Firefox支持，且从window开始捕获（尽管DOM2 级事件规范要求从document）</li>
+<li>事件捕获示意图：<br><img src="http://i1.piimg.com/567571/f51d8dbcd0d5b373.png" alt=""></li>
+<li>由于老版本的浏览器不支持，因此很少有人使用事件捕获。我们也建议读者放心地使用事件冒泡，在有特殊需要时再使用事件捕获。</li>
+</ul>
+</blockquote>
+<ul>
+<li>为了彻底理解事件冒泡和捕获，这里写了个例子：<br>=<br>  &lt;!DOCTYPE html&gt;  <html lang="zh-cn"><br>  <head><br>      <meta charset="UTF-8"><br>      <title>test1</title><br>      <link rel="stylesheet" href="test1.css"><br>  </head><br>  <body><br>      <div id="a"><br>          <div id="b"><br>              <div id="c"></div><br>          </div><br>      </div><br>      <script src="test1.js"></script><br>  </body><br>  </html>
+
+</li>
+</ul>
+<p>–</p>
+<pre><code>//test1.css
+#a{
+    width: 300px;
+    height: 300px;
+    background: pink;
+}
+#b{
+    width: 200px;
+    height: 200px;
+    background: blue;
+}
+#c{
+    width: 100px;
+    height: 100px;
+    background: yellow;
+}
+</code></pre><p>–</p>
+<pre><code>//test1.js
+var a = document.getElementById(&quot;a&quot;),
+    b = document.getElementById(&quot;b&quot;),
+    c = document.getElementById(&quot;c&quot;);
+    c.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;c1&quot;)
+        // 注意第三个参数没有传进 false , 因为默认传进来的是 false，代表冒泡阶段调用，个人认为处于目标阶段也会调用的
+    });
+    c.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;c2&quot;);
+    }, true);
+    b.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;b&quot;);
+    }, true);
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a1&quot;);
+    }, true);
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a2&quot;)
+    });
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a3&quot;);
+        event.stopImmediatePropagation();
+    }, true);
+    a.addEventListener(&quot;click&quot;, function(event){
+        console.log(&quot;a4&quot;);
+    }, true);
+</code></pre><ul>
+<li><p>效果图<br><img src="http://p1.bpimg.com/567571/2ac062602fdca7a7.png" alt=""></p>
+</li>
+<li><p><strong>点击 c 或 b，输出：a1、a3</strong></p>
+</li>
+<li>stopImmediatePropagation 包含了 stopPropagation 的功能，即阻止事件传播（捕获或冒泡），但<strong>同时也阻止该元素上后来绑定的事件处理程序被调用</strong>，所以不输出 a4，因为事件捕获被拦截了，自然不会触发 b、c 上的事件，所以不输出 b、c1、c2，冒泡更谈不上了，所以不输出 a2。有人会觉得上面的表述有一点点问题，为什么捕获被拦截了，c1 就不输出了呢？ c1 应该是冒泡阶段被调用的呀，所以应该改为另一个表述：“…冒泡更谈不上，所以不输出 c1、a2”。但另一个表述是错的，下面会分析到。</li>
+<li><strong>点击 a，输出 a1、a2、a3</strong></li>
+<li>不应该是 a1、a3、a2 吗？a1、a3 可是在捕获阶段被调用的处理程序啊，a2 是在冒泡阶段被调用的啊。这里正是要说明的：虽然这三个事件处理程序注册时指定了true、false，但现在事件流是处于目标阶段，不是冒泡阶段、也不是捕获阶段，事件处理程序被调用的顺序是注册的顺序。不论你指定的是 true or false. 这也解释了上面提到的“另一种表述”为什么是错误的。</li>
+<li>更深一步解释是：要区分事件流和事件处理程序，不论事件处理程序存不存在，事件流都会传播。这是一个观察者模式，绑定事件的节点是被观察者、事件处理程序是观察者，事件流是不知道观察者的存在的，所以你点击页面的时候，事件流一定要传播，传播到某一个节点时，节点去通知所有观察者，也就是调用事件处理程序（有可能观察者不存在）。</li>
+<li>当一个事件流来到一个节点时，事件流可能在捕获阶段（正在流向最深层次的节点）、可能在处于目标阶段（已经流到了目标，也就是event.target）、也可能在冒泡阶段（正在流向最外层节点）。而事件处理程序是这么处理的：<strong>① 注册时第三个参数指定为 true 时，事件流到来，如果事件流是捕获阶段或处于目标阶段，则调用该事件处理程序。②注册时第三个参数指定为 false 时，当事件流到来，如果事件流是处于目标阶段或冒泡阶段，则调用该事件处理程序。</strong></li>
+<li>注释掉 event.stopImmediatePropagation，点击 c，输出 a1、a3、a4、b、c1、c2、a2</li>
+<li>另外，如果同一个事件处理程序（指针相同，比如用 handler 保存的事件处理程序），用 addEventListener 或 attachEvent 绑定多次，如果第三个参数是相同的话，也只会被调用一次。但如果第三个参数一个设置为true，另一个设置为false，那么会被调用两次。</li>
+</ul>
+<p>##DOM事件流</p>
+<blockquote>
+<ul>
+<li>“DOM2级事件”规定的事件流包括三个阶段：事件捕获阶段、处于目标阶段和事件冒泡阶段。首先发生的是事件捕获，为截获事件提供了机会。然后是实际的目标接收到事件。最后一个阶段是冒泡阶段。（事件处理中“处于目标阶段”被看成冒泡阶段的一部分）。</li>
+<li>IE9、Safari、Chrome、Firefox和Opera9.5及更高版本都会在捕获阶段触发事件对象上的事件，就是有两个机会在目标对象上面操作事件。（尽管DOM2级事件规范明确要求捕获阶段不涉及事件目标）。</li>
+</ul>
+</blockquote>
+<p>##事件处理程序</p>
+<p>###DOM0级事件处理程序</p>
+<blockquote>
+<ul>
+<li>每个元素（包括window 和document）都有自己的事件处理程序属性，这些属性<strong>通常全部小写</strong>。使用 DOM0 级指定的事件处理程序被认为是元素的方法。this 引用当前元素。通过 this 可以访问元素的任何属性和方法(但经过测试，class、自定义属性不能直接访问，通过 [] 访问也不行，id、value、type 这种可以)。DOM0 级事件处理程序在冒泡阶段被处理。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var btn = document.getElementById(&quot;myBtn&quot;);</div><div class="line">btn.onclick = function () &#123;</div><div class="line">    alert(this.id); //&quot;myBtn&quot;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>###DOM2级事件处理程序</p>
+<blockquote>
+<ul>
+<li><code>addEventListener()</code> 包含三个参数，要处理的事件名、事件处理函数、布尔值，布尔值为true，表示在捕获阶段调用事件处理程序，反之在冒泡阶段调用。</li>
+<li>DOM2 级事件处理程序中的 this 也指向 <code>addEventListener</code> 的那个元素。</li>
+<li>可以添加多个事件处理程序，按添加顺序依次调用。</li>
+</ul>
+</blockquote>
+<pre><code>//removeEventListener 无法移除匿名函数的事件处理程序。
+var btn = document.getElementById(&quot;myBtn&quot;);
+var handler = function () {
+   alert(this.id);
+};
+btn.addEventListener(&quot;click&quot;, handler, false);
+//这里省略了其他代码
+btn.removeEventListener(&quot;click&quot;, handler, false); // 有效！
+</code></pre><blockquote>
+<ul>
+<li>IE9、Firefox、Safari、Chrome 和Opera 支持DOM2 级事件处理程序。</li>
+</ul>
+</blockquote>
+<p>###IE事件处理程序</p>
+<blockquote>
+<ul>
+<li><code>attachEvent</code> <code>detachEvent</code> 接收两个参数，事件处理程序名称、事件处理程序函数。由于IE8及更早版本只支持事件冒泡，所以该事件处理程序只支持事件冒泡。</li>
+<li>老版本的Opera支持这种方法，但现在Opera已经改用blink内核，IE11已经不支持这种方法，注意 IE9 就已经支持 DOM2 级事件处理程序了。</li>
+<li>特别要注意：第一个参数包含on，比如onclick。</li>
+<li>区别于DOM0 级事件处理程序，<code>this</code> 指向 ‘window’。</li>
+<li>也可以添加多个事件处理程序。</li>
+</ul>
+</blockquote>
+<p>###跨浏览器的事件处理程序</p>
+<pre><code>var EventUtil = {
+    addHandler: function(element, type, handler){
+        if (element.addEventListener){
+            element.addEventListener(type, handler, false);
+        } else if (element.attachEvent){
+            element.attachEvent(&quot;on&quot; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = handler;
+        }
+    },
+    removeHandler: function(element, type, handler){
+        if (element.removeEventListener){
+            element.removeEventListener(type, handler, false);
+        } else if (element.detachEvent){
+            element.detachEvent(&quot;on&quot; + type, handler);
+        } else {
+            element[&quot;on&quot; + type] = null;
+        }
+    }
+};
+</code></pre><blockquote>
+<ul>
+<li>存在问题：</li>
+</ul>
+<ol>
+<li>IE事件处理程序 中的 this 指向 window。</li>
+<li>只支持 DOM0 级的浏览器不能多次添加事件处理程序，不过这种浏览器应该不多了，即使是IE8 也支持attachEvent。</li>
+<li>会不会有一些事件，在浏览器支持 DOM2 级事件处理程序的情况下，那些事件只能用 on + name 的形式呢？ 之前一直怀疑 (1).xhr.onreadystatechange() 和 (2).DOMNodeInserted 事件，这里我多虑了，经过验证，(1).是支持 DOM2 级事件的，(2).天生就是 DOM2 级的，而且也支持 DOM0 事件处理程序。这里只是为了打消我的疑虑，记录下来。</li>
+</ol>
+</blockquote>
+<p>##事件对象</p>
+<p>###DOM 中的事件对象</p>
+<blockquote>
+<ul>
+<li>兼容 DOM 的浏览器会将一个 event 对象传入事件处理程序， IE9 及更高版本可以，无论指定事件处理程序时使用什么方法（DOM0 级 DOM2 级），HTML 事件处理程序可以通过访问 event 变量得到 event 对象。</li>
+<li>event 中的属性和方法都是只读的</li>
+<li>常用属性：</li>
+</ul>
+<ol>
+<li><code>target</code> 事件的目标</li>
+<li><code>currentTarget</code> 绑定事件的元素，与 ‘this’ 的指向相同</li>
+<li><code>stopPropagation()</code> 取消事件的进一步捕获或冒泡。如果bubbles为true，则可以使用这个方法</li>
+<li><code>stopImmediatePropagation()</code> 取消事件的进一步捕获或冒泡，同时阻止任何事件处理程序被调用（DOM3级事件中新增）（这个说法不大准确，应该是<strong>阻止比该事件处理程序后注册的事件处理程序执行</strong>）</li>
+<li><code>preventDefault()</code> 取消事件的默认行为，比如点击链接跳转。如果 cancelable 是 true，则可以使用这个方法</li>
+<li><code>type</code> 被触发的事件类型</li>
+<li><code>eventPhase</code> 调用事件处理程序的阶段：1表示捕获阶段，2表示“处于目标”，3表示冒泡阶段</li>
+</ol>
+</blockquote>
+<pre><code>//this target currentTarget 举例：
+    document.body.onclick = function(event){
+        alert(event.currentTarget === document.body); //true
+        alert(this === document.body); //true
+        alert(event.target === document.getElementById(&quot;myBtn&quot;)); //true
+    };
+</code></pre><blockquote>
+<ul>
+<li>通过 <code>event.type</code> 与 <code>switch case</code> 组合，可以通过一个函数处理多个事件。</li>
+<li>只有在事件处理程序执行期间，<code>event</code> 对象才会存在；一旦事件处理程序执行完成，<code>event</code> 对象就会被销毁。</li>
+</ul>
+</blockquote>
+<p>###IE 中的事件对象</p>
+<blockquote>
+<ul>
+<li>DOM0 级的事件处理程序，event 作为 window 的一个属性存在。（从 IE9 开始，event 可以从参数中获得）</li>
+<li><code>attachEvent</code> 添加的事件处理程序，<code>event</code> 作为参数传入，也可以通过 <code>window</code> 来访问 <code>event</code> 对象。</li>
+<li>HTML 事件处理程序依然可以通过访问 <code>event</code> 变量得到 <code>event</code> 对象。</li>
+<li>属性和方法：</li>
+</ul>
+<ol>
+<li><code>cancelBubble</code> 设置 <code>true</code> 可以取消事件冒泡</li>
+<li><code>returnValue</code> 设置 <code>false</code> 可以取消事件的默认行为。</li>
+<li><code>srcElement</code> 事件的目标（与DOM中的 <code>target</code> 相同）</li>
+</ol>
+<ul>
+<li>注意事项：</li>
+</ul>
+<ol>
+<li><code>attachEvent</code> 中的 <code>event.srcElement === this</code> 吗？ 答案是否定的，因为前面说到过 <code>attachEvent</code> 中 <code>this</code> 指向 <code>window</code>, DOM0 级、DOM2 级 事件处理程序 <code>this</code> 才指向 <code>event.target / window.event.srcElement</code></li>
+</ol>
+</blockquote>
+<p>###跨浏览器的事件对象<br>    var EventUtil = {<br>        getEvent: function(event){<br>            return event ? event : window.event; // window.event DOM0级时IE<br>        },<br>        getTarget: function(event){<br>            return event.target || event.srcElement; // event.srcElement for IE<br>        },<br>        preventDefault: function(event){<br>            if (event.preventDefault){<br>                event.preventDefault();<br>            } else {<br>                event.returnValue = false; // IE<br>            }<br>        },<br>        stopPropagation: function(event){<br>            if (event.stopPropagation){<br>                event.stopPropagation();<br>            } else {<br>                event.cancelBubble = true; // IE<br>            }<br>        }<br>    };</p>
+<p>##事件类型</p>
+<blockquote>
+<ul>
+<li>DOM3 级事件规定了几类事件；HTML5 也定义了一组事件；还有一些事件没有规范，浏览器的实现不一致。</li>
+<li>DOM3 级事件模块在 DOM2 级事件模块基础上重新定义了这些事件，也添加了一些新事件。包括 IE9 在内的所有主流浏览器都支持 DOM2 级事件。IE9 也支持 DOM3 级事件。</li>
+</ul>
+</blockquote>
+<p>###UI事件类型</p>
+<blockquote>
+<ul>
+<li><p>load 事件，当页面完全加载后（包括所有图像、JavaScript 文件、CSS 文件等外部资源），就会触发 window 上面的 load 事件。</p>
+</li>
+<li><p>resize 事件</p>
+</li>
+</ul>
+<ol>
+<li>浏览器窗口大小发生变化时会触发该事件，这个事件在 window 上触发，IE、Safari、Chrome 和 Opera 会在浏览器窗口变化了 1 像素时就触发 resize 事件，然后随着变化不断重复触发。Firefox 则只会在用户停止调整窗口大小时才会触发。</li>
+<li>注意不要在这个事件的处理程序中加入大计算量的代码，或者采用函数节流的方式优化性能。</li>
+<li>浏览器窗口最小化或最大化时也会触发 resize 事件。</li>
+</ol>
+<ul>
+<li>scroll 事件</li>
+</ul>
+<ol>
+<li>该事件在 window 上发生，此处和书上讲的有点不一样，webkit 内核或 blink 内核的浏览器（Chrome、Opera、Safari）可以通过 <code>document.body.scrollTop</code> 获取页面被卷去的高度，而 Trident、Gecko （IE、火狐）可以通过 <code>document.documentElement.scrollTop</code>来获取该值。</li>
+<li>所以最好通过 <code>document.body.scrollTop + document.documentElement.scrollTop</code> 的方式获取 scrollTop 的值，因为两者之一会等于0，或者使用 <code>document.body.scrollTop || document.documentElement.scrollTop</code>，两者效果一致。</li>
+<li>发现普通元素，指定 scroll 的处理程序，通过 <code>event.target.scrollTop</code> 也是可以取得相应的值，兼容性没测试，用的时候注意一下。</li>
+</ol>
+</blockquote>
+<p>###常见事件</p>
+<blockquote>
+<ul>
+<li><code>click</code> 在用户单击住鼠标按钮或按下回车键时触发。 触发顺序 mousedown mouseup click，如果 mousedown、mouseup 其中之一被取消，就不会触发 click 事件。</li>
+<li><code>dblclick</code> 触发顺序 mousedown mouseup click mousedown mouseup click dblclick， 如果中间有事件被取消，dblclick 也不会被触发</li>
+<li><code>mousedown</code> 用户按下了任意鼠标按钮时触发。</li>
+<li><code>mouseup</code> 用户释放按钮时触发</li>
+<li><code>mouseenter</code> 在鼠标光标从元素外部首次移动到元素范围之内时触发。不冒泡，而且在光标移动到后代元素上不会触发。DOM2 级事件并没有定义这个事，但 DOM3 级事件将它纳入了规范。IE、Firefox9+和Opera支持这个事件。</li>
+<li><code>mouseleave</code> 在位于元素上方的鼠标光标移动到元素范围之外时触发。不冒泡，而且在光标移动到后代元素上不会触发。DOM2 级事件并没有定义这个事，但 DOM3 级事件将它纳入了规范。IE、Firefox9+ 和 Opera 支持这个事件。</li>
+<li><code>mouseover</code> 在鼠标指针位于一个元素外部，然后用户将其首次移入另一个元素边界之内时触发。不能通过键盘触发这个事件。</li>
+<li><code>mouseout</code> 在鼠标指针位于一个元素上方，然后用户将其移入另一个元素时触发。又移入的另一个元素可能位于前一个元素的外部，也可能是这个元素的子元素。不能通过键盘触发这个事件。</li>
+</ul>
+</blockquote>
+<p>mouseenter、mouseleave 和 mouseover、mouseout 的区别：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-cn&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;test1&lt;/title&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;test1.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;mouseover&quot;&gt;
+        &lt;div class=&quot;sub-mouseover&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;mouseenter&quot;&gt;
+        &lt;div class=&quot;sub-mouseenter&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;script src=&quot;test1.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>–</p>
+<pre><code>//test1.css
+.wrap {
+    width: 200px;
+    height: 100px;
+}
+.mouseover {
+    background: pink;
+}
+.mouseenter {
+    margin-top: 30px;
+    background: gray;
+}
+.sub-mouseover,
+.sub-mouseenter {
+    width: 100px;
+    height: 50px;
+    background: #AE81FF;
+}
+</code></pre><p>–</p>
+<pre><code>//test1.js
+var div1 = document.querySelector(&quot;.mouseover&quot;),
+    div2 = document.querySelector(&quot;.mouseenter&quot;);
+div1.addEventListener(&quot;mouseover&quot;, function(){
+    console.log(&quot;div1 mouseover&quot;);
+});
+div1.addEventListener(&quot;mouseout&quot;, function(){
+    console.log(&quot;div1 mouseout&quot;);
+})
+div2.addEventListener(&quot;mouseenter&quot;, function(){
+    console.log(&quot;div2 mouseenter&quot;);
+})
+div2.addEventListener(&quot;mouseleave&quot;, function(){
+    console.log(&quot;div2 mouseleave&quot;);
+})
+</code></pre><ul>
+<li><p>效果图<br><img src="http://i1.piimg.com/567571/e19b404e62fbc140.png" alt=""></p>
+</li>
+<li><p>鼠标由左侧从上到下依次经过所有 div 的情况，输出 <code>div1 mouseover</code> <code>div1 mouseout</code> <code>div1 mouseover</code> <code>div1 mouseout</code> <code>div2 mouseenter</code> <code>div2 mouseleave</code></p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>mousemove</code> 当鼠标指针在元素内部移动时重复地触发。不能通过键盘触发这个事件。</li>
+<li>除了 <code>mouseenter</code>、<code>mousedleave</code>，所有鼠标事件都会冒泡，取消鼠标事件将会影响浏览器的默认行为，也会影响其它事件，因为鼠标事件与其它事件是密不可分的。</li>
+<li>关于 <code>dblclick</code> IE8 及之前版本中的实现有一个小bug，因此在双击事件中，会跳过第二个<code>mousedown</code> 和click事件，其顺序如下：<code>mousedown</code> <code>mouseup</code> <code>click</code> <code>mouseup</code> <code>dblclick</code>，但还是会触发 <code>dblclick</code> 事件</li>
+<li>客户区坐标位置：鼠标事件中的 event 都有 clientX clientY 属性，表示在视口中客户区的坐标位置，这些值不包括页面滚动的距离，因此这个位置并不表示鼠标在页面上的位置：<br><img src="http://p1.bpimg.com/567571/4737369b32025045.png" alt=""></li>
+</ul>
+</blockquote>
+<ul>
+<li>页面坐标位置：pageX、pageY，这两个属性表示鼠标光标在页面中的位置，在页面<strong>没有滚动</strong>的情况下，pageX 和 pageY 的值与 clientX、clientY 的值相等。IE8 及更早版本不支持事件对象上的页面坐标，不过使用客户区坐标和滚动信息可以计算出来。</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>keydown</code>: 当用户按下键盘上的任意键时触发，而且如果按住不放的话，会重复触发此事件。</li>
+<li><code>keypress</code> 当用户按下键盘上的字符键时触发，而且如果按住不放的话，会重复触发此事件。按下Esc 键也会触发这个事件。Safari 3.1 之前的版本也会在用户按下非字符键时触发keypress事件。</li>
+<li><code>keyup</code>：当用户释放键盘上的键时触发。</li>
+<li>触发顺序：<code>keydown</code>、<code>keypress</code>、<code>keyup</code>，<code>keydown</code>、<code>keypress</code> 都是在文本框发生变化之前被触发的; keyup 事件则是在文本框已经发生变化之后被触发的。</li>
+<li>如果用户按下了一个字符键不放，就会重复触发 <code>keydown</code> 和<code>keypress</code> 事件，直到用户松开该键为止。</li>
+<li><code>keydown</code>、<code>keyup</code> 中的 event 有 keyCode, 与ASCII 码中对应小写字母或数字的编码相同。</li>
+</ul>
+</blockquote>
+<p>##内存和性能</p>
+<blockquote>
+<ul>
+<li>每个函数都是对象，都会占用内存；内存中的对象越多，性能就越差。</li>
+<li>必须事先指定所有事件处理程序而导致的 DOM 访问次数，会延迟整个页面的交互就绪时间。</li>
+</ul>
+</blockquote>
+<p>###事件委托</p>
+<pre><code>&lt;body&gt;
+    &lt;ul id=&quot;myLinks&quot;&gt;
+        &lt;li id=&quot;goSomewhere&quot;&gt;Go somewhere&lt;/li&gt;
+        &lt;li id=&quot;doSomething&quot;&gt;Do something&lt;/li&gt;
+        &lt;li id=&quot;sayHi&quot;&gt;Say hi&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    (function(){
+        var list = document.getElementById(&quot;myLinks&quot;);
+        EventUtil.addHandler(list, &quot;click&quot;, function(event){
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            switch(target.id){
+                case &quot;doSomething&quot;:
+                    document.title = &quot;I changed the document&apos;s title&quot;;
+                    break;
+                case &quot;goSomewhere&quot;:
+                    location.href = &quot;http://www.wrox.com&quot;;
+                    break;
+                case &quot;sayHi&quot;:
+                    alert(&quot;hi&quot;);
+                    break;
+            }
+        });
+    })();
+    &lt;/script&gt;
+&lt;/body&gt;
+</code></pre><blockquote>
+<ul>
+<li>上面的方法只取得了一个 DOM 元素，只添加了一个事件处理程序，占用的内存更少</li>
+<li>最适合采用事件委托技术的事件包块 <code>click</code>、<code>mousedown</code>、<code>mouseup</code>、<code>keydown</code>、<code>keyup</code> 和 <code>keypress</code></li>
+</ul>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      对基础进行一个总结回顾
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
+      <category term="事件" scheme="http://wayneblog.cn/tags/%E4%BA%8B%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>server mock</title>
@@ -62,6 +463,26 @@
       <category term="server" scheme="http://wayneblog.cn/tags/server/"/>
     
       <category term="mock" scheme="http://wayneblog.cn/tags/mock/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>正则表达式</title>
+    <link href="http://wayneblog.cn/2016/10/15/RegExp/"/>
+    <id>http://wayneblog.cn/2016/10/15/RegExp/</id>
+    <published>2016-10-15T06:45:20.000Z</published>
+    <updated>2016-12-13T09:33:33.627Z</updated>
+    
+    <summary type="html">
+    
+      正则的基础应用
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
+      <category term="标准库、RegExp" scheme="http://wayneblog.cn/tags/%E6%A0%87%E5%87%86%E5%BA%93%E3%80%81RegExp/"/>
     
   </entry>
   
@@ -124,7 +545,7 @@
     <link href="http://wayneblog.cn/2016/10/05/javascript/"/>
     <id>http://wayneblog.cn/2016/10/05/javascript/</id>
     <published>2016-10-05T03:35:09.000Z</published>
-    <updated>2016-12-13T05:30:58.713Z</updated>
+    <updated>2016-12-13T15:33:19.913Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、-数据类型、运算符、语句、变量"><a href="#一、-数据类型、运算符、语句、变量" class="headerlink" title="一、 数据类型、运算符、语句、变量"></a>一、 数据类型、运算符、语句、变量</h2><h3 id="1-数据类型"><a href="#1-数据类型" class="headerlink" title="1.数据类型"></a>1.数据类型</h3><ul>
 <li>类型：<ul>
@@ -215,6 +636,30 @@
 <li>存取器往往用于，属性的值需要依赖对象内部数据的场合。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">//可直接在对象中定义</div><div class="line">var o =&#123;</div><div class="line">  $n : 5,</div><div class="line">  get next() &#123; return this.$n++ &#125;,</div><div class="line">  set next(n) &#123;</div><div class="line">    if (n &gt;= this.$n) this.$n = n;</div><div class="line">    else throw &apos;新的值必须大于当前值&apos;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">o.next // 5</div><div class="line">o.next // 6</div><div class="line"></div><div class="line">o.next = 10;</div><div class="line">o.next // 10</div><div class="line"></div><div class="line">//可在Object.defineProperty中定义</div><div class="line">var d = new Date();</div><div class="line"></div><div class="line">Object.defineProperty(d, &apos;month&apos;, &#123;</div><div class="line">  get: function () &#123;</div><div class="line">    return d.getMonth();</div><div class="line">  &#125;,</div><div class="line">  set: function (v) &#123;</div><div class="line">    d.setMonth(v);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//存取器也可以使用Object.create方法定义</div><div class="line">var o = Object.create(Object.prototype, &#123;</div><div class="line">  foo: &#123;</div><div class="line">    get: function () &#123;</div><div class="line">      return &apos;getter&apos;;</div><div class="line">    &#125;,</div><div class="line">    set: function (value) &#123;</div><div class="line">      console.log(&apos;setter: &apos;+value);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="三、-函数、闭包、递归、封装"><a href="#三、-函数、闭包、递归、封装" class="headerlink" title="三、 函数、闭包、递归、封装"></a>三、 函数、闭包、递归、封装</h2><h3 id="1-函数"><a href="#1-函数" class="headerlink" title="1. 函数"></a>1. 函数</h3><ul>
+<li>函数声明和函数表达式最大的区别就是函数声明会前置;</li>
+<li>func.name ==&gt; 函数名  func.length ==&gt; 形参个数</li>
+<li>arguments ==&gt; 实参组成的类数组  arguments.callee==&gt;函数本身  arguments.length 实参个数  //在’use strict’中arguments无效 </li>
+<li><a href="http://wayneblog.cn/2016/10/02/this/">this</a></li>
+</ul>
+<h3 id="2-闭包"><a href="#2-闭包" class="headerlink" title="2.闭包"></a>2.闭包</h3><ul>
+<li>变量：当函数被调用后变量就会被释放,闭包中构成的变量是不被释放的;</li>
+<li>作用域&amp;作用域链：</li>
+<li>闭包概念：如果一个函数可以访问另一个函数作用域的变量，那么前者跟变量共同构成闭包;其实就是子函数可以访问父函数的作用域。</li>
+<li>闭包最大的坑： 子函数对父函数变量的引用，是父函数运行结束之后的变量的状态；解决办法就是：子函数对父函数变量的引用，使用运行时的状态；常用的就是自执行函数表达式来解决。</li>
+</ul>
+<h3 id="3-递归"><a href="#3-递归" class="headerlink" title="3.递归"></a>3.递归</h3><ul>
+<li>递归分成两步：<ul>
+<li>边界条件，通常是if-else</li>
+<li>递归调用</li>
+</ul>
+</li>
+<li>arguments.callee规范已经不推荐使用了，所以不要用这种递归方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//命名函数表达式</div><div class="line">var factorial = (function f(num)&#123;</div><div class="line">	if(num&lt;=1)&#123;</div><div class="line">		return 1;</div><div class="line">	&#125;else&#123;</div><div class="line">		return num*f(num-1);</div><div class="line">	&#125;	</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">//arguments.callee，规范已经不推荐使用</div><div class="line">function factorial(num)&#123;</div><div class="line">	if(num&lt;=1)&#123;</div><div class="line">		return 1;</div><div class="line">	&#125;else&#123;</div><div class="line">		return num*arguments.callee(num-1);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-封装"><a href="#4-封装" class="headerlink" title="4.封装"></a>4.封装</h3><ul>
+<li>封装块级作用域</li>
+</ul>
 ]]></content>
     
     <summary type="html">
@@ -245,7 +690,7 @@
     <link href="http://wayneblog.cn/2016/10/02/this/"/>
     <id>http://wayneblog.cn/2016/10/02/this/</id>
     <published>2016-10-02T04:35:20.000Z</published>
-    <updated>2016-12-13T08:28:15.442Z</updated>
+    <updated>2016-12-13T10:04:23.091Z</updated>
     
     <content type="html"><![CDATA[<h2 id="一、this"><a href="#一、this" class="headerlink" title="一、this"></a>一、this</h2><p>this是Javascript语言的一个关键字。它代表函数运行时，自动生成的一个内部对象，只能在函数内部使用。比如，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function test()&#123;</div><div class="line">    this.x = 1;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>随着函数使用场合的不同，this的值会发生变化。但是有一个总的原则，那就是this指的是，调用函数的那个对象。<br>下面分四种情况，详细讨论this的用法。</p>
@@ -280,8 +725,8 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//Javascript中存在一种名为伪数组的对象结构。比较特别的是 arguments 对象，还有像调用 getElementsByTagName , document.childNodes 之类的，它们返回NodeList对象都属于伪数组。不能应用 Array下的 push , pop 等方法。</div><div class="line">//但是我们能通过 Array.prototype.slice.call 转换为真正的数组的带有 length 属性的对象，这样 domNodes 就可以应用 Array 下的所有方法了。</div><div class="line"></div><div class="line">var domNodes = Array.prototype.slice.call(document.getElementsByTagName(&quot;*&quot;));</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="2-bind-方法"><a href="#2-bind-方法" class="headerlink" title="2.bind()方法"></a>2.bind()方法</h3><blockquote>
-<p>MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//在常见的单体模式中，通常我们会使用 _this , that , self 等保存 this ，这样我们可以在改变了上下文之后继续引用到它。 而我们可以利用bind()直接传入想要的上下文this</div><div class="line"></div><div class="line">var $box = $(&apos;.box&apos;);</div><div class="line">var foo = &#123;</div><div class="line">  animal: &apos;dog&apos;,</div><div class="line">  say_animal: function()&#123;</div><div class="line">    //var _this = this;</div><div class="line">    $box.on(&apos;click&apos;,function()&#123;</div><div class="line">      console.log(this.animal);</div><div class="line">    &#125;.bind(this));</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">foo.say_animal();</div></pre></td></tr></table></figure></p>
+<h3 id="2-bind-方法-ES5的方法-IE9"><a href="#2-bind-方法-ES5的方法-IE9" class="headerlink" title="2.bind()方法(ES5的方法 IE9+)"></a>2.bind()方法(ES5的方法 IE9+)</h3><blockquote>
+<p>MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//在常见的单体模式中，通常我们会使用 _this , that , self 等保存 this ，这样我们可以在改变了上下文之后继续引用到它。 而我们可以利用bind()直接传入想要的上下文this</div><div class="line"></div><div class="line">var $box = $(&apos;.box&apos;);</div><div class="line">var foo = &#123;</div><div class="line">  animal: &apos;dog&apos;,</div><div class="line">  say_animal: function()&#123;</div><div class="line">    //var _this = this;</div><div class="line">    $box.on(&apos;click&apos;,function()&#123;</div><div class="line">      console.log(this.animal);</div><div class="line">    &#125;.bind(this));</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">foo.say_animal();</div><div class="line"></div><div class="line">//还有一个是函数科里化currying的运用</div><div class="line">function getConfig(colors,size,other)&#123;</div><div class="line">	console.log(colors,size,other);</div><div class="line">&#125;</div><div class="line">var defaultConfig = getConfig.bind(null,&apos;yellow&apos;,&apos;1024*768&apos;);</div><div class="line">defaultConfig(&apos;123&apos;);</div><div class="line">defaultConfig(&apos;456&apos;);//前面参数都一样，只有后面的参数需要做改变</div></pre></td></tr></table></figure></p>
 </blockquote>
 <h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
 <li>三种方法的区别<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    x: 81,</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">var foo = &#123;</div><div class="line">    getX: function() &#123;</div><div class="line">        return this.x;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">console.log(foo.getX.bind(obj)());  //81</div><div class="line">console.log(foo.getX.call(obj));    //81</div><div class="line">console.log(foo.getX.apply(obj));   //81</div></pre></td></tr></table></figure>

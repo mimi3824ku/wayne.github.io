@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://wayneblog.cn/2016/10/02/this/index.html">
 <meta property="og:site_name" content="wayne's blog">
 <meta property="og:description" content="总结this和改变this指向的方法">
-<meta property="og:updated_time" content="2016-12-13T08:28:15.442Z">
+<meta property="og:updated_time" content="2016-12-13T10:04:23.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="this">
 <meta name="twitter:description" content="总结this和改变this指向的方法">
@@ -573,8 +573,8 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//Javascript中存在一种名为伪数组的对象结构。比较特别的是 arguments 对象，还有像调用 getElementsByTagName , document.childNodes 之类的，它们返回NodeList对象都属于伪数组。不能应用 Array下的 push , pop 等方法。</div><div class="line">//但是我们能通过 Array.prototype.slice.call 转换为真正的数组的带有 length 属性的对象，这样 domNodes 就可以应用 Array 下的所有方法了。</div><div class="line"></div><div class="line">var domNodes = Array.prototype.slice.call(document.getElementsByTagName(&quot;*&quot;));</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h3 id="2-bind-方法"><a href="#2-bind-方法" class="headerlink" title="2.bind()方法"></a>2.bind()方法</h3><blockquote>
-<p>MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//在常见的单体模式中，通常我们会使用 _this , that , self 等保存 this ，这样我们可以在改变了上下文之后继续引用到它。 而我们可以利用bind()直接传入想要的上下文this</div><div class="line"></div><div class="line">var $box = $(&apos;.box&apos;);</div><div class="line">var foo = &#123;</div><div class="line">  animal: &apos;dog&apos;,</div><div class="line">  say_animal: function()&#123;</div><div class="line">    //var _this = this;</div><div class="line">    $box.on(&apos;click&apos;,function()&#123;</div><div class="line">      console.log(this.animal);</div><div class="line">    &#125;.bind(this));</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">foo.say_animal();</div></pre></td></tr></table></figure></p>
+<h3 id="2-bind-方法-ES5的方法-IE9"><a href="#2-bind-方法-ES5的方法-IE9" class="headerlink" title="2.bind()方法(ES5的方法 IE9+)"></a>2.bind()方法(ES5的方法 IE9+)</h3><blockquote>
+<p>MDN的解释是：bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">//在常见的单体模式中，通常我们会使用 _this , that , self 等保存 this ，这样我们可以在改变了上下文之后继续引用到它。 而我们可以利用bind()直接传入想要的上下文this</div><div class="line"></div><div class="line">var $box = $(&apos;.box&apos;);</div><div class="line">var foo = &#123;</div><div class="line">  animal: &apos;dog&apos;,</div><div class="line">  say_animal: function()&#123;</div><div class="line">    //var _this = this;</div><div class="line">    $box.on(&apos;click&apos;,function()&#123;</div><div class="line">      console.log(this.animal);</div><div class="line">    &#125;.bind(this));</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">foo.say_animal();</div><div class="line"></div><div class="line">//还有一个是函数科里化currying的运用</div><div class="line">function getConfig(colors,size,other)&#123;</div><div class="line">	console.log(colors,size,other);</div><div class="line">&#125;</div><div class="line">var defaultConfig = getConfig.bind(null,&apos;yellow&apos;,&apos;1024*768&apos;);</div><div class="line">defaultConfig(&apos;123&apos;);</div><div class="line">defaultConfig(&apos;456&apos;);//前面参数都一样，只有后面的参数需要做改变</div></pre></td></tr></table></figure></p>
 </blockquote>
 <h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h3><ul>
 <li>三种方法的区别<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    x: 81,</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">var foo = &#123;</div><div class="line">    getX: function() &#123;</div><div class="line">        return this.x;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">console.log(foo.getX.bind(obj)());  //81</div><div class="line">console.log(foo.getX.call(obj));    //81</div><div class="line">console.log(foo.getX.apply(obj));   //81</div></pre></td></tr></table></figure>
@@ -749,7 +749,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -766,7 +766,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -846,7 +846,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、this"><span class="nav-text">一、this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情况一：纯粹的函数调用"><span class="nav-text">情况一：纯粹的函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况二：作为对象方法的调用"><span class="nav-text">情况二：作为对象方法的调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况三-作为构造函数调用"><span class="nav-text">情况三 作为构造函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况四-apply调用"><span class="nav-text">情况四 apply调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、apply、call、bind方法"><span class="nav-text">二、apply、call、bind方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-apply-amp-call"><span class="nav-text">1.apply()&call()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-bind-方法"><span class="nav-text">2.bind()方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-总结"><span class="nav-text">3.总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、this"><span class="nav-text">一、this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#情况一：纯粹的函数调用"><span class="nav-text">情况一：纯粹的函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况二：作为对象方法的调用"><span class="nav-text">情况二：作为对象方法的调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况三-作为构造函数调用"><span class="nav-text">情况三 作为构造函数调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#情况四-apply调用"><span class="nav-text">情况四 apply调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、apply、call、bind方法"><span class="nav-text">二、apply、call、bind方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-apply-amp-call"><span class="nav-text">1.apply()&call()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-bind-方法-ES5的方法-IE9"><span class="nav-text">2.bind()方法(ES5的方法 IE9+)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-总结"><span class="nav-text">3.总结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -866,8 +866,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

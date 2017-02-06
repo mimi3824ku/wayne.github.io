@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://wayneblog.cn/2016/10/05/javascript/index.html">
 <meta property="og:site_name" content="wayne's blog">
 <meta property="og:description" content="javascript的一些主心骨知识还有自己学习过程中漏掉的知识">
-<meta property="og:updated_time" content="2016-12-13T05:30:58.713Z">
+<meta property="og:updated_time" content="2016-12-13T15:33:19.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript重要知识及知识补充">
 <meta name="twitter:description" content="javascript的一些主心骨知识还有自己学习过程中漏掉的知识">
@@ -629,6 +629,30 @@
 <li>存取器往往用于，属性的值需要依赖对象内部数据的场合。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">//可直接在对象中定义</div><div class="line">var o =&#123;</div><div class="line">  $n : 5,</div><div class="line">  get next() &#123; return this.$n++ &#125;,</div><div class="line">  set next(n) &#123;</div><div class="line">    if (n &gt;= this.$n) this.$n = n;</div><div class="line">    else throw &apos;新的值必须大于当前值&apos;;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">o.next // 5</div><div class="line">o.next // 6</div><div class="line"></div><div class="line">o.next = 10;</div><div class="line">o.next // 10</div><div class="line"></div><div class="line">//可在Object.defineProperty中定义</div><div class="line">var d = new Date();</div><div class="line"></div><div class="line">Object.defineProperty(d, &apos;month&apos;, &#123;</div><div class="line">  get: function () &#123;</div><div class="line">    return d.getMonth();</div><div class="line">  &#125;,</div><div class="line">  set: function (v) &#123;</div><div class="line">    d.setMonth(v);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">//存取器也可以使用Object.create方法定义</div><div class="line">var o = Object.create(Object.prototype, &#123;</div><div class="line">  foo: &#123;</div><div class="line">    get: function () &#123;</div><div class="line">      return &apos;getter&apos;;</div><div class="line">    &#125;,</div><div class="line">    set: function (value) &#123;</div><div class="line">      console.log(&apos;setter: &apos;+value);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="三、-函数、闭包、递归、封装"><a href="#三、-函数、闭包、递归、封装" class="headerlink" title="三、 函数、闭包、递归、封装"></a>三、 函数、闭包、递归、封装</h2><h3 id="1-函数"><a href="#1-函数" class="headerlink" title="1. 函数"></a>1. 函数</h3><ul>
+<li>函数声明和函数表达式最大的区别就是函数声明会前置;</li>
+<li>func.name ==&gt; 函数名  func.length ==&gt; 形参个数</li>
+<li>arguments ==&gt; 实参组成的类数组  arguments.callee==&gt;函数本身  arguments.length 实参个数  //在’use strict’中arguments无效 </li>
+<li><a href="http://wayneblog.cn/2016/10/02/this/">this</a></li>
+</ul>
+<h3 id="2-闭包"><a href="#2-闭包" class="headerlink" title="2.闭包"></a>2.闭包</h3><ul>
+<li>变量：当函数被调用后变量就会被释放,闭包中构成的变量是不被释放的;</li>
+<li>作用域&amp;作用域链：</li>
+<li>闭包概念：如果一个函数可以访问另一个函数作用域的变量，那么前者跟变量共同构成闭包;其实就是子函数可以访问父函数的作用域。</li>
+<li>闭包最大的坑： 子函数对父函数变量的引用，是父函数运行结束之后的变量的状态；解决办法就是：子函数对父函数变量的引用，使用运行时的状态；常用的就是自执行函数表达式来解决。</li>
+</ul>
+<h3 id="3-递归"><a href="#3-递归" class="headerlink" title="3.递归"></a>3.递归</h3><ul>
+<li>递归分成两步：<ul>
+<li>边界条件，通常是if-else</li>
+<li>递归调用</li>
+</ul>
+</li>
+<li>arguments.callee规范已经不推荐使用了，所以不要用这种递归方式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">//命名函数表达式</div><div class="line">var factorial = (function f(num)&#123;</div><div class="line">	if(num&lt;=1)&#123;</div><div class="line">		return 1;</div><div class="line">	&#125;else&#123;</div><div class="line">		return num*f(num-1);</div><div class="line">	&#125;	</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">//arguments.callee，规范已经不推荐使用</div><div class="line">function factorial(num)&#123;</div><div class="line">	if(num&lt;=1)&#123;</div><div class="line">		return 1;</div><div class="line">	&#125;else&#123;</div><div class="line">		return num*arguments.callee(num-1);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="4-封装"><a href="#4-封装" class="headerlink" title="4.封装"></a>4.封装</h3><ul>
+<li>封装块级作用域</li>
+</ul>
 
       
     </div>
@@ -795,7 +819,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -812,7 +836,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">21</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -892,7 +916,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-数据类型、运算符、语句、变量"><span class="nav-text">一、 数据类型、运算符、语句、变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据类型"><span class="nav-text">1.数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-运算符"><span class="nav-text">2.运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-语句"><span class="nav-text">3.语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-变量"><span class="nav-text">4.变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、属性标签、对象标签"><span class="nav-text">二、属性标签、对象标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-六种属性标签"><span class="nav-text">1.六种属性标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-属性标签关联方法"><span class="nav-text">2.属性标签关联方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-元属性详解"><span class="nav-text">3.元属性详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-getter-amp-setter（存取器）"><span class="nav-text">4.getter&setter（存取器）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-数据类型、运算符、语句、变量"><span class="nav-text">一、 数据类型、运算符、语句、变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数据类型"><span class="nav-text">1.数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-运算符"><span class="nav-text">2.运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-语句"><span class="nav-text">3.语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-变量"><span class="nav-text">4.变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、属性标签、对象标签"><span class="nav-text">二、属性标签、对象标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-六种属性标签"><span class="nav-text">1.六种属性标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-属性标签关联方法"><span class="nav-text">2.属性标签关联方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-元属性详解"><span class="nav-text">3.元属性详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-getter-amp-setter（存取器）"><span class="nav-text">4.getter&setter（存取器）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-函数、闭包、递归、封装"><span class="nav-text">三、 函数、闭包、递归、封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-函数"><span class="nav-text">1. 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-闭包"><span class="nav-text">2.闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-递归"><span class="nav-text">3.递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-封装"><span class="nav-text">4.封装</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -912,8 +936,8 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
