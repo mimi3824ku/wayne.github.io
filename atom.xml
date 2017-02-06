@@ -393,6 +393,51 @@
   </entry>
   
   <entry>
+    <title>异步</title>
+    <link href="http://wayneblog.cn/2016/12/27/Asynchronous/"/>
+    <id>http://wayneblog.cn/2016/12/27/Asynchronous/</id>
+    <published>2016-12-27T03:45:20.000Z</published>
+    <updated>2017-02-06T11:24:47.867Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、setTimeout"><a href="#一、setTimeout" class="headerlink" title="一、setTimeout"></a>一、setTimeout</h2><h3 id="1-setTimeout基本用法"><a href="#1-setTimeout基本用法" class="headerlink" title="1.setTimeout基本用法"></a>1.<a href="http://js.jirengu.com/rawuhugope/1/edit?html,js,output" target="_blank" rel="external">setTimeout基本用法</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var timer = setTimeout(sayName,2000,&apos;wayne&apos;);</div><div class="line"></div><div class="line">function sayName(name)&#123;</div><div class="line">  console.log(name);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//setTimeout(func,delay,[pram1,pram2,...])</div></pre></td></tr></table></figure>
+<h3 id="2-setTimeout只会推迟执行，而不会提前执行"><a href="#2-setTimeout只会推迟执行，而不会提前执行" class="headerlink" title="2.setTimeout只会推迟执行，而不会提前执行"></a>2.<a href="http://js.jirengu.com/canuzolayi/1/edit?html,js,console,output" target="_blank" rel="external">setTimeout只会推迟执行，而不会提前执行</a></h3><h3 id="3-setTimeout有delay的最小值"><a href="#3-setTimeout有delay的最小值" class="headerlink" title="3.setTimeout有delay的最小值"></a>3.setTimeout有delay的最小值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var timer = setInterval(callback,0);</div><div class="line"></div><div class="line">function callback()&#123;</div><div class="line">  console.log(&apos;开始工作&apos;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">//实际上每个浏览器的最小间隔时间都不一样，通常是4ms，不可可能到0ms，IE浏览器是15ms</div></pre></td></tr></table></figure>
+<h3 id="4-setTimeout模拟setInterval"><a href="#4-setTimeout模拟setInterval" class="headerlink" title="4.setTimeout模拟setInterval"></a>4.setTimeout模拟setInterval</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var timer = setTimeout(callback,2000);</div><div class="line"></div><div class="line">function callback()&#123;</div><div class="line">  console.log(1)</div><div class="line">  setTimeout(callback,2000)</div><div class="line">&#125;</div><div class="line">//用具名函数作用域来实现（递归，自己调用自己）</div></pre></td></tr></table></figure>
+<h2 id="二、一个简单的动画"><a href="#二、一个简单的动画" class="headerlink" title="二、一个简单的动画"></a>二、<a href="http://js.jirengu.com/gejuketine/1/edit?html,js,console,output" target="_blank" rel="external">一个简单的动画</a></h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">//动画的基本原理</div><div class="line">//html</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">  &lt;title&gt;JS Bin&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;div class=&quot;box&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line"></div><div class="line">//css</div><div class="line">.box&#123;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  background-color: lightblue;</div><div class="line">  position: absolute;</div><div class="line">  top: 0;</div><div class="line">  left: 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//js</div><div class="line">var box = document.querySelector(&apos;.box&apos;);</div><div class="line"></div><div class="line">moveX(box,0,200,1000,function()&#123;</div><div class="line">  console.log(&apos;动画结束&apos;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">function moveX(box,startX,endX,time,func)&#123;</div><div class="line">  var moveSecond = 50;</div><div class="line">  var stepCount = time/1000*moveSecond;</div><div class="line">  var duration = time/stepCount;</div><div class="line">  var step = 0;</div><div class="line">  box.style.left = startX + &apos;px&apos;;</div><div class="line">  </div><div class="line">setTimeout(function oneStep()&#123;</div><div class="line">    step += 1</div><div class="line">    box.style.left = (step/stepCount)*endX + &apos;px&apos;;</div><div class="line">    if(step === stepCount)&#123;</div><div class="line">      func();</div><div class="line">    &#125;else&#123;</div><div class="line">      setTimeout(oneStep,duration)</div><div class="line">    &#125;</div><div class="line">&#125;,duration)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="5-setTimeout特点"><a href="#5-setTimeout特点" class="headerlink" title="5.setTimeout特点"></a>5.setTimeout特点</h3><ul>
+<li>setTimeout是浏览器提供的API</li>
+<li>setTimeout里面的this默认指向window;可以通过bind来改变this的指向，<a href="http://js.jirengu.com/tegoqujogu/1/edit" target="_blank" rel="external">例子</a></li>
+<li>timer id 就是第几个闹钟</li>
+</ul>
+<h2 id="三、异步"><a href="#三、异步" class="headerlink" title="三、异步"></a>三、异步</h2><h3 id="1-表面的结论"><a href="#1-表面的结论" class="headerlink" title="1. 表面的结论"></a>1. 表面的结论</h3><p>代码的执行顺序和写代码的顺序不一致，“很可能”是异步。</p>
+<h3 id="2-异步就是一种套路"><a href="#2-异步就是一种套路" class="headerlink" title="2. 异步就是一种套路"></a>2. 异步就是一种套路</h3><ul>
+<li>例子： 托人买票<br>你让黄牛给你买票，你是一直追着他要到票为止，还是拜托他买到票后call me back，自己在这段时间就去干别的事情。毫无疑问后者就是异步</li>
+<li>异步不等于callback，只是JS中异步和callback常常一起出现</li>
+<li>异步就是猴急，不等结果</li>
+<li>同步就是耐心，等结果</li>
+</ul>
+<h2 id="四、callback"><a href="#四、callback" class="headerlink" title="四、callback"></a>四、callback</h2><p>异步没有立即返回的结果</p>
+<ul>
+<li>setTimeout 的结果是一个id</li>
+<li>$.get返回的是一个请求对象</li>
+<li>addEventListener的结果是空</li>
+</ul>
+<p>想要拿到异步的结果就要通过callback来实现；</p>
+]]></content>
+    
+    <summary type="html">
+    
+      通俗眼光看异步
+    
+    </summary>
+    
+      <category term="Javascript" scheme="http://wayneblog.cn/categories/Javascript/"/>
+    
+    
+      <category term="异步、async、setTimeout、JS动画基础、callback" scheme="http://wayneblog.cn/tags/%E5%BC%82%E6%AD%A5%E3%80%81async%E3%80%81setTimeout%E3%80%81JS%E5%8A%A8%E7%94%BB%E5%9F%BA%E7%A1%80%E3%80%81callback/"/>
+    
+  </entry>
+  
+  <entry>
     <title>server mock</title>
     <link href="http://wayneblog.cn/2016/12/02/server-mock/"/>
     <id>http://wayneblog.cn/2016/12/02/server-mock/</id>
